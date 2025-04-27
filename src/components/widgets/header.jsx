@@ -24,7 +24,6 @@ function Header({ setShowProfileModal }) {
     <header className="fixed top-0 w-full z-10 flex justify-between items-center px-4 sm:px-8 bg-white ">
       <motion.div
         className="flex items-center gap-3 cursor-pointer py-2"
-        onClick={() => router.push("/")}
         whileHover="hover"
         whileTap="tap"
         initial={{ scale: 1 }}
