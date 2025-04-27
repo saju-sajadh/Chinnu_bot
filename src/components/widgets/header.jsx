@@ -15,8 +15,8 @@ function Header({ userData, setShowProfileModal }) {
 
   return (
     <header
-      className="fixed top-0 w-full z-10 flex justify-between items-center px-4 sm:px-8 py-4 bg-gradient-to-r from-yellow-300 via-pink-300 to-blue-300 shadow-lg"
-      style={{ fontFamily: "'Comic Neue', cursive" }}
+      className="fixed top-0 w-full z-10 flex justify-between items-center px-4 sm:px-8 py-4 bg-white"
+      
     >
       <motion.div
         className="flex items-center gap-3 cursor-pointer"
@@ -35,7 +35,7 @@ function Header({ userData, setShowProfileModal }) {
           className="rounded-full border-4 border-white shadow-md"
           priority
         />
-        <span className="text-3xl sm:text-4xl font-bold text-purple-600 drop-shadow-md">
+        <span className="text-3xl font-extrabold font-sans sm:text-4xl text-black drop-shadow-md">
           Chinnu
         </span>
       </motion.div>

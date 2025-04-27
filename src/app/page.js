@@ -261,7 +261,7 @@ export default function HomePage() {
             <div ref={messagesEndRef} />
           </div>
           <motion.div
-            className="fixed bottom-0 lg:bottom-4 left-0 right-0 bg-white/80 backdrop-blur-sm rounded-t-3xl shadow-2xl p-6 z-10 max-w-4xl mx-auto"
+            className="fixed bottom-0  left-0 right-0 bg-white/80 backdrop-blur-sm rounded-t-3xl shadow-2xl p-6 z-10 max-w-4xl mx-auto"
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5, ease: 'easeOut' }}
