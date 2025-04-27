@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback, useEffect, Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useSignUp } from "@clerk/nextjs";
@@ -13,7 +13,8 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Input, Typography } from "antd";
 import { _firestore, doc, getDoc, setDoc } from "@/libs/firebase";
 
-export default function SignupPage() {
+// Child component containing useSearchParams
+function SignupContent() {
   const { Title } = Typography;
   const { isLoaded, signUp, setActive } = useSignUp();
   const [emailAddress, setEmailAddress] = useState("");
@@ -343,5 +344,20 @@ export default function SignupPage() {
         </div>
       )}
     </div>
+  );
+}
+
+// Main page component with Suspense
+export default function SignupPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="w-full h-screen flex justify-center items-center">
+          <LoadingOutlined className="text-blue-400 text-xl" />
+        </div>
+      }
+    >
+      <SignupContent />
+    </Suspense>
   );
 }

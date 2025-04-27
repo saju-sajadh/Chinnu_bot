@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback, useEffect, Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useSignIn } from "@clerk/nextjs";
@@ -11,7 +11,8 @@ import {
 } from "@ant-design/icons";
 import { useRouter, useSearchParams } from "next/navigation";
 
-export default function SigninPage() {
+// Child component containing useSearchParams
+function SigninContent() {
   const { isLoaded, signIn, setActive } = useSignIn();
   const [emailAddress, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
@@ -259,5 +260,20 @@ export default function SigninPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+
+export default function SigninPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="w-full h-screen flex justify-center items-center">
+          <LoadingOutlined className="text-blue-400 text-xl" />
+        </div>
+      }
+    >
+      <SigninContent />
+    </Suspense>
   );
 }
