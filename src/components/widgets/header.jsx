@@ -15,11 +15,11 @@ function Header({ userData, setShowProfileModal }) {
 
   return (
     <header
-      className="fixed top-0 w-full z-10 flex justify-between items-center px-4 sm:px-8 py-4 bg-white"
+      className="fixed top-0 w-full z-10 flex justify-between items-center px-4 sm:px-8 bg-white "
       
     >
       <motion.div
-        className="flex items-center gap-3 cursor-pointer"
+        className="flex items-center gap-3 cursor-pointer py-2"
         onClick={() => router.push("/")}
         variants={buttonVariants}
         whileHover="hover"
@@ -32,7 +32,7 @@ function Header({ userData, setShowProfileModal }) {
           alt="xAI Logo"
           width={50}
           height={50}
-          className="rounded-full border-4 border-white shadow-md"
+          className="rounded-full border-4 border-white shadow-md bg-[#FEF7DE]"
           priority
         />
         <span className="text-3xl font-extrabold font-sans sm:text-4xl text-black drop-shadow-md">
@@ -41,7 +41,7 @@ function Header({ userData, setShowProfileModal }) {
       </motion.div>
 
       <motion.button
-        className="p-1 cursor-pointer rounded-full bg-white border-4 border-green-400 shadow-lg hover:bg-green-100 transition-colors"
+        className="absolute right-2 bottom-0 cursor-pointer bg-white  hover:bg-green-100 transition-colors"
         onClick={() => setShowProfileModal(true)}
         aria-label="Open profile modal"
         variants={buttonVariants}
@@ -51,11 +51,11 @@ function Header({ userData, setShowProfileModal }) {
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
       >
         <Image
-          className="rounded-full"
-          src={userData?.avatar || "/avatar1.png"}
+          className="rounded"
+          src={'/logos/chinmayananda-drawing.png'}
           alt="User Avatar"
-          width={48}
-          height={48}
+          width={96}
+          height={96}
         />
       </motion.button>
     </header>
