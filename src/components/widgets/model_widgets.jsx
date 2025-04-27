@@ -10,6 +10,7 @@ import MoralStories from '../stories/MoralStory';
 import RichTextEditor from '../thoughts/text_editor';
 import ThoughtsTopic from '../thoughts/thoughts_topic';
 
+
 function ModelWidgets(props) {
   return (
     <div className="w-full">

@@ -238,7 +238,7 @@ const headerClasses =
   "w-full flex justify-between px-4 lg:px-32 items-center py-4 fixed bg-[#f8f7f6]";
 const buttonWrapperClasses = "flex items-center gap-2 cursor-pointer";
 const buttonClasses =
-  "flex items-center gap-2 bg-white dark:bg-gray-800 rounded-full py-2 px-4 shadow-sm hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors text-lg text-gray-900 dark:text-white cursor-pointer";
+  "flex items-center gap-2 bg-white rounded-full py-2 px-4 shadow-sm hover:bg-gray-100 transition-colors text-lg text-gray-900 cursor-pointer";
 
 export {
   avatarOptions,

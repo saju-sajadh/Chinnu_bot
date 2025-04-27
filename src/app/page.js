@@ -1,18 +1,23 @@
-'use client';
+"use client";
 
-import { getDoc, _firestore, doc } from '@/libs/firebase';
-import { useUser } from '@clerk/nextjs';
-import { useEffect, useState, useRef } from 'react';
-import { LoadingOutlined, SendOutlined, SoundOutlined } from '@ant-design/icons';
-import { fetchGeminiResponse } from '@/genai/prompt';
-import { textToSpeech, stopSpeech } from '@/libs/textToSpeech';
-import ModelWidgets from '@/components/widgets/model_widgets';
-import Header from '@/components/widgets/header';
-import ButtonWidget from '@/components/widgets/button_widget';
-import DailyMoralValue from '@/genai/daily-prompt';
-import { motion } from 'framer-motion';
-import Image from 'next/image';
-import Head from 'next/head';
+import { getDoc, _firestore, doc } from "@/libs/firebase";
+import { useUser } from "@clerk/nextjs";
+import { useEffect, useState, useRef } from "react";
+import {
+  LoadingOutlined,
+  MenuOutlined,
+  SendOutlined,
+  SoundOutlined,
+} from "@ant-design/icons";
+import { fetchGeminiResponse } from "@/genai/prompt";
+import { textToSpeech, stopSpeech } from "@/libs/textToSpeech";
+import ModelWidgets from "@/components/widgets/model_widgets";
+import Header from "@/components/widgets/header";
+import ButtonWidget from "@/components/widgets/button_widget";
+import DailyMoralValue from "@/genai/daily-prompt";
+import { motion } from "framer-motion";
+import Image from "next/image";
+import Head from "next/head";
 
 export default function HomePage() {
   const { user, isLoaded } = useUser();
@@ -28,7 +33,7 @@ export default function HomePage() {
   const [showThoughtsTopicModal, setShowThoughtsTopicModal] = useState(false);
   const [quizParams, setQuizParams] = useState({ topic: null, grade: null });
   const [messages, setMessages] = useState([]);
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [selectedTopic, setSelectedTopic] = useState(null);
@@ -37,18 +42,18 @@ export default function HomePage() {
   const fetchData = async () => {
     try {
       if (!isLoaded || !user || !_firestore) {
-        console.log('Firestore or user not ready yet');
+        console.log("Firestore or user not ready yet");
         return;
       }
-      const userDocRef = doc(_firestore, 'users', user.id);
+      const userDocRef = doc(_firestore, "users", user.id);
       const userDoc = await getDoc(userDocRef);
       if (!userDoc.exists()) {
-        console.log('User document does not exist');
+        console.log("User document does not exist");
         return;
       }
       setUserData(userDoc.data());
     } catch (error) {
-      console.error('Error fetching user data:', error);
+      console.error("Error fetching user data:", error);
     }
   };
 
@@ -60,7 +65,7 @@ export default function HomePage() {
 
   useEffect(() => {
     const handleEscape = (e) => {
-      if (e.key === 'Escape') {
+      if (e.key === "Escape") {
         setShowProfileModal(false);
         setShowQuizModal(false);
         setShowQuizGameModal(false);
@@ -73,12 +78,12 @@ export default function HomePage() {
         stopSpeech();
       }
     };
-    window.addEventListener('keydown', handleEscape);
-    return () => window.removeEventListener('keydown', handleEscape);
+    window.addEventListener("keydown", handleEscape);
+    return () => window.removeEventListener("keydown", handleEscape);
   }, []);
 
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
   const handleStartQuiz = (topic, grade) => {
@@ -89,10 +94,10 @@ export default function HomePage() {
 
   const handleStartGame = (game) => {
     setShowGamesModal(false);
-    if (game === 'TicTacToe') {
+    if (game === "TicTacToe") {
       setShowTicTacToeModal(true);
     }
-    if (game === 'Chess') {
+    if (game === "Chess") {
       setShowChessModal(true);
     }
   };
@@ -106,22 +111,22 @@ export default function HomePage() {
   const handleSendMessage = async () => {
     if (!input.trim()) return;
 
-    const userMessage = { text: input, sender: 'user' };
+    const userMessage = { text: input, sender: "user" };
     setMessages((prev) => [...prev, userMessage]);
-    setInput('');
+    setInput("");
     setIsLoading(true);
     const response = await fetchGeminiResponse(input);
-    const botMessage = { text: response, sender: 'bot' };
+    const botMessage = { text: response, sender: "bot" };
     setMessages((prev) => [...prev, botMessage]);
     setIsLoading(false);
-    textToSpeech(response, { lang: 'en-US', rate: 1, pitch: 1 });
+    textToSpeech(response, { lang: "en-US", rate: 1, pitch: 1 });
     setIsSpeaking(true);
     const utterance = new SpeechSynthesisUtterance(response);
     utterance.onend = () => setIsSpeaking(false);
   };
 
   const handleKeyPress = (e) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
+    if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       handleSendMessage();
     }
@@ -132,7 +137,7 @@ export default function HomePage() {
       stopSpeech();
       setIsSpeaking(false);
     } else {
-      textToSpeech(text, { lang: 'en-US', rate: 1, pitch: 1 });
+      textToSpeech(text, { lang: "en-US", rate: 1, pitch: 1 });
       setIsSpeaking(true);
     }
   };
@@ -141,7 +146,7 @@ export default function HomePage() {
   const messageVariants = {
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.3, ease: 'easeOut' },
+    transition: { duration: 0.3, ease: "easeOut" },
   };
 
   const buttonVariants = {
@@ -158,7 +163,7 @@ export default function HomePage() {
           className="text-3xl font-bold text-purple-600"
           style={{ fontFamily: "'Comic Neue', cursive" }}
         >
-          Loading Fun...
+          <DailyMoralValue />
         </motion.div>
       </div>
     );
@@ -167,24 +172,34 @@ export default function HomePage() {
   return (
     <>
       <Head>
-        <title>Chinnu Playtime</title>
+        <title>Chinnu</title>
         <link
           href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap"
           rel="stylesheet"
         />
       </Head>
       <div
-        className="min-h-screen flex flex-col bg-gradient-to-r from-yellow-300 via-pink-300 to-blue-300"
+        className="relative min-h-screen flex flex-col bg-gradient-to-r from-yellow-200 via-pink-200 to-blue-200"
         style={{ fontFamily: "'Comic Neue', cursive" }}
       >
-        <Header setShowProfileModal={setShowProfileModal} userData={userData} />
-        <main className="flex-1 flex flex-col w-full max-w-4xl mx-auto py-4 mt-24 mb-40 lg:mb-24">
+        <Image
+          src={"/logos/cvp3.png"}
+          alt=""
+          width={300}
+          height={300}
+          quality={90}
+          className="absolute top-60 lg:w-96 lg:top-[350px] right-1/12 lg:right-[850px] z-0 opacity-30"
+        />
+        <Header
+          setShowProfileModal={setShowProfileModal}
+        />
+        <main className="flex-1 flex flex-col w-full max-w-4xl mx-auto py-4 mt-24 mb-40 lg:mb-24 z-10">
           <div className="flex-1 overflow-y-auto pb-32 sm:pb-48">
             {messages.map((message, index) => (
               <motion.div
                 key={index}
                 className={`flex ${
-                  message.sender === 'user' ? 'justify-end' : 'justify-start'
+                  message.sender === "user" ? "justify-end" : "justify-start"
                 } mb-4`}
                 variants={messageVariants}
                 initial="initial"
@@ -192,12 +207,12 @@ export default function HomePage() {
               >
                 <div
                   className={`lg:max-w-[75%] m-4 lg:m-0 rounded-3xl p-4 text-lg flex items-center gap-3 shadow-lg ${
-                    message.sender === 'user'
-                      ? 'bg-blue-500 text-white'
-                      : 'bg-yellow-200 text-gray-800'
+                    message.sender === "user"
+                      ? "bg-blue-500 text-white"
+                      : "bg-yellow-200 text-gray-800"
                   }`}
                 >
-                  {message.sender === 'bot' && (
+                  {message.sender === "bot" && (
                     <Image
                       src="/logos/xai-logo.png"
                       alt="Bot Avatar"
@@ -207,23 +222,25 @@ export default function HomePage() {
                     />
                   )}
                   <span>{message.text}</span>
-                  {message.sender === 'bot' && (
+                  {message.sender === "bot" && (
                     <motion.button
                       onClick={() => toggleSpeech(message.text)}
                       className="p-2 rounded-full bg-white/50 hover:bg-white transition-colors"
-                      aria-label={isSpeaking ? 'Stop speech' : 'Read aloud'}
+                      aria-label={isSpeaking ? "Stop speech" : "Read aloud"}
                       variants={buttonVariants}
                       whileHover="hover"
                       whileTap="tap"
                     >
                       <SoundOutlined
-                        className={`text-lg ${isSpeaking ? 'text-purple-600' : 'text-gray-600'}`}
+                        className={`text-lg ${
+                          isSpeaking ? "text-purple-600" : "text-gray-600"
+                        }`}
                       />
                     </motion.button>
                   )}
-                  {message.sender === 'user' && (
+                  {message.sender === "user" && (
                     <Image
-                      src={`${userData?.avatar}` || '/avatars/avatar1.png'}
+                      src={`${userData?.avatar}` || "/avatars/avatar1.png"}
                       alt="User Avatar"
                       width={32}
                       height={32}
@@ -264,10 +281,16 @@ export default function HomePage() {
             className="fixed bottom-0  left-0 right-0 bg-white/80 backdrop-blur-sm rounded-t-3xl shadow-2xl p-6 z-10 max-w-4xl mx-auto"
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5, ease: 'easeOut' }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
           >
-            <div className="text-center mb-6">
-              <DailyMoralValue />
+            <div className="absolute lg:hidden -top-4 left-1">
+              <Image
+                src={"/logos/menu.png"}
+                alt="menu"
+                width={10}
+                height={10}
+                className="w-10 h-10"
+              />
             </div>
             <div className="flex items-center gap-3 bg-gradient-to-r from-pink-200 to-yellow-200 rounded-2xl p-4 border-4 border-pink-400">
               <input
@@ -284,7 +307,7 @@ export default function HomePage() {
                 aria-label="Type your message"
               />
               <motion.button
-                className="p-3 flex justify-center items-center cursor-pointer rounded-full bg-green-500 text-white hover:bg-green-600 transition-colors disabled:opacity-50"
+                className="p-2 flex justify-center items-center cursor-pointer rounded-full bg-green-500 text-white hover:bg-green-600 transition-colors disabled:opacity-50"
                 onClick={handleSendMessage}
                 disabled={isLoading || !input.trim()}
                 variants={buttonVariants}
@@ -296,8 +319,8 @@ export default function HomePage() {
               </motion.button>
             </div>
             <div
-              className={`flex flex-col items-center w-full ${
-                messages.length === 0 ? 'mt-6' : 'mt-4'
+              className={`hidden lg:flex flex-col items-center w-full ${
+                messages.length === 0 ? "mt-6" : "mt-4"
               }`}
             >
               <div className="flex flex-wrap justify-center gap-4 w-full">

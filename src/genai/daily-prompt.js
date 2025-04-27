@@ -21,7 +21,7 @@ const DailyMoralValue = () => {
 
   return (
     <h1
-      className={`text-lg sm:text-2xl font-medium text-gray-900 dark:text-white ${comicNeue.className} grid gap-2`}
+      className={`text-lg sm:text-2xl font-medium text-gray-900 ${comicNeue.className} grid gap-2`}
     >
         <span className="text-sm text-black italic opacity-35">Daily Value Prompt</span>
       " {dailyValue} "

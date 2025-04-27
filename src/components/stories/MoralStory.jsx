@@ -17,7 +17,7 @@ const MoralStories = ({ onClose }) => {
       {isLoading ? (
         <div className="flex justify-center items-center h-40">
           <LoadingOutlined className="!text-blue-400 text-2xl" />
-          <span className="ml-2 text-gray-900 dark:text-white">
+          <span className="ml-2 text-gray-900 ">
             Loading Weekly Story...
           </span>
         </div>

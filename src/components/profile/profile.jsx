@@ -59,16 +59,16 @@ export default function Profile({ isProfile, fName, lName }) {
 
   if (!isLoaded) {
     return (
-      <div className="w-full h-screen flex justify-center items-center bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900">
+      <div className="w-full h-screen flex justify-center items-center bg-gradient-to-br from-gray-50 to-gray-100 ">
         <Spin size="large" />
       </div>
     );
   }
 
   return (
-    <div className="w-full max-w-3xl mx-auto bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-4 sm:p-6 md:p-8 transform transition-all max-h-[calc(100vh-2rem)] overflow-y-auto sm:max-h-none sm:overflow-y-visible scroll-smooth">
+    <div className="w-full max-w-3xl mx-auto bg-white rounded-2xl shadow-xl p-4 sm:p-6 md:p-8 transform transition-all max-h-[calc(100vh-2rem)] overflow-y-auto sm:max-h-none sm:overflow-y-visible scroll-smooth">
       <div className="flex justify-center mb-6 sm:mb-8">
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold flex items-center text-gray-800 dark:text-white">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold flex items-center text-gray-800">
           <Image
             src="/logos/xai-logo.png"
             alt="Chinnu Logo"
@@ -82,7 +82,7 @@ export default function Profile({ isProfile, fName, lName }) {
       </div>
       <Title
         level={4}
-        className="text-center mb-6 sm:mb-8 text-lg sm:text-xl md:text-2xl text-gray-700 dark:text-gray-200 font-semibold"
+        className="text-center mb-6 sm:mb-8 text-lg sm:text-xl md:text-2xl text-gray-700 font-semibold"
       >
         Create Your Profile
       </Title>
@@ -91,7 +91,7 @@ export default function Profile({ isProfile, fName, lName }) {
           <div className="flex-1">
             <label
               htmlFor="firstName"
-              className="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+              className="block text-xs sm:text-sm font-medium text-gray-700 mb-1"
             >
               First Name
             </label>
@@ -100,13 +100,13 @@ export default function Profile({ isProfile, fName, lName }) {
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
               placeholder="Enter your first name"
-              className="w-full p-2 sm:p-3 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-blue-500 transition-all bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
+              className="w-full p-2 sm:p-3 border border-gray-200  rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400  transition-all bg-gray-50  text-gray-800 "
             />
           </div>
           <div className="flex-1">
             <label
               htmlFor="lastName"
-              className="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+              className="block text-xs sm:text-sm font-medium text-gray-700  mb-1"
             >
               Last Name
             </label>
@@ -115,12 +115,12 @@ export default function Profile({ isProfile, fName, lName }) {
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
               placeholder="Enter your last name"
-              className="w-full p-2 sm:p-3 border border-gray-200 dark:border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-blue-500 transition-all bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
+              className="w-full p-2 sm:p-3 border border-gray-200  rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400  transition-all bg-gray-50  text-gray-800 "
             />
           </div>
         </div>
         <div>
-          <label className="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 sm:mb-3">
+          <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2 sm:mb-3">
             Choose Your Avatar
           </label>
           <div className="grid grid-cols-4 sm:grid-cols-4 md:grid-cols-6 gap-2 sm:gap-4">
@@ -131,7 +131,7 @@ export default function Profile({ isProfile, fName, lName }) {
                 className={`w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 cursor-pointer rounded-full overflow-hidden border-2 transition-all ${
                   selectedAvatar === avatar
                     ? "border-blue-500 scale-105"
-                    : "border-gray-200 dark:border-gray-600 hover:border-blue-300 dark:hover:border-blue-500"
+                    : "border-gray-200  hover:border-blue-300 "
                 }`}
               >
                 <Image
@@ -157,7 +157,7 @@ export default function Profile({ isProfile, fName, lName }) {
           onClick={handleSave}
           loading={loading}
           disabled={loading}
-          className="w-full sm:flex-1 h-10 sm:h-12 bg-blue-600 text-white rounded-xl hover:bg-blue-700 dark:hover:bg-blue-800 transition-all font-medium text-sm sm:text-base"
+          className="w-full sm:flex-1 h-10 sm:h-12 bg-blue-600 text-white rounded-xl hover:bg-blue-700  transition-all font-medium text-sm sm:text-base"
         >
           Save Profile
         </Button>
@@ -165,7 +165,7 @@ export default function Profile({ isProfile, fName, lName }) {
           <Button
             onClick={handleSkip}
             disabled={loading}
-            className="w-full sm:flex-1 h-10 sm:h-12 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 rounded-xl hover:bg-gray-200 dark:hover:bg-gray-600 transition-all font-medium text-sm sm:text-base"
+            className="w-full sm:flex-1 h-10 sm:h-12 bg-gray-100 text-gray-700  rounded-xl hover:bg-gray-200  transition-all font-medium text-sm sm:text-base"
           >
             Skip for Now
           </Button>
