@@ -49,7 +49,7 @@ export const textToSpeech = async (text, options = {}) => {
 
   console.log("Available voices:", voices.map((v) => v.name));
 
-  // List of names commonly associated with female voices
+
   const femaleVoiceNames = [
     "Zira",
     "Aria",

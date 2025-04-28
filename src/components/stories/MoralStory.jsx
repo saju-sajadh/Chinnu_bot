@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { LoadingOutlined } from "@ant-design/icons";
 import WeeklyMoralStory from "@/genai/weekly-stories";
 
-const MoralStories = ({ onClose }) => {
+const MoralStories = ({ onClose, getStoryMaker }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const MoralStories = ({ onClose }) => {
           </span>
         </div>
       ) : (
-        <WeeklyMoralStory />
+        <WeeklyMoralStory getStoryMaker={getStoryMaker}/>
       )}
     </div>
   );

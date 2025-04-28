@@ -44,6 +44,7 @@ export function MobileMenu({menuItems}) {
         return (
           <button
             key={index}
+            onClick={item.action}
             className={`absolute flex justify-center items-center w-10 h-10 rounded-full bg-yellow-400 border-2 border-yellow-400 text-yellow-400 font-bold transition-all duration-300 shadow-md ${
               checked
                 ? `${translation}`

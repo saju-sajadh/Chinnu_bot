@@ -1,15 +1,15 @@
-import React from 'react';
-import { Modal } from '../dialogue/dialogue_model';
-import Profile from '../profile/profile';
-import Quiz from '../quiz/quiz';
-import QuizGame from '../quiz/quiz_game';
-import Games from '../game/games';
-import TicTacToe from '../game/tic_tac_toe';
-import ChessGame from '../game/chess';
-import MoralStories from '../stories/MoralStory';
-import RichTextEditor from '../thoughts/text_editor';
-import ThoughtsTopic from '../thoughts/thoughts_topic';
-
+import React from "react";
+import { Modal } from "../dialogue/dialogue_model";
+import Profile from "../profile/profile";
+import Quiz from "../quiz/quiz";
+import QuizGame from "../quiz/quiz_game";
+import Games from "../game/games";
+import TicTacToe from "../game/tic_tac_toe";
+import ChessGame from "../game/chess";
+import MoralStories from "../stories/MoralStory";
+import RichTextEditor from "../thoughts/text_editor";
+import ThoughtsTopic from "../thoughts/thoughts_topic";
+import StoryMaker from "../stories/storyMaker";
 
 function ModelWidgets(props) {
   return (
@@ -82,7 +82,13 @@ function ModelWidgets(props) {
         onClose={() => props.setShowMoralStoriesModal(false)}
         maxWidth="sm:w-full lg:w-1/2"
       >
-        <MoralStories onClose={() => props.setShowMoralStoriesModal(false)} />
+        <MoralStories
+          onClose={() => props.setShowMoralStoriesModal(false)}
+          getStoryMaker={() => {
+            props.setShowMoralStoriesModal(false);
+            props.setShowStoryMaker(true);
+          }}
+        />
       </Modal>
 
       <Modal
@@ -99,6 +105,14 @@ function ModelWidgets(props) {
         maxWidth="sm:w-full lg:w-1/2"
       >
         <RichTextEditor selectedTopic={props.selectedTopic} />
+      </Modal>
+
+      <Modal
+        isOpen={props.showStoryMaker}
+        onClose={() => props.setShowStoryMaker(false)}
+        maxWidth="w-full lg:w-1/2"
+      >
+        <StoryMaker />
       </Modal>
     </div>
   );

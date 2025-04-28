@@ -13,7 +13,7 @@ const comicNeue = Comic_Neue({
   display: "swap",
 });
 
-export default function WeeklyMoralStory() {
+export default function WeeklyMoralStory(props) {
   const getWeeklyIndex = () => {
     const startDate = new Date("2025-01-01T06:00:00");
     const now = new Date();
@@ -91,7 +91,10 @@ export default function WeeklyMoralStory() {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.6 + weeklyStory.content.length * 0.1, duration: 0.4 }}
+              transition={{
+                delay: 0.6 + weeklyStory.content.length * 0.1,
+                duration: 0.4,
+              }}
               className="flex flex-col gap-2 mt-6 bg-blue-200 rounded-2xl p-4 shadow-md"
             >
               <p className="text-center text-lg sm:text-xl font-bold text-blue-600">
@@ -101,6 +104,13 @@ export default function WeeklyMoralStory() {
                 {weeklyStory.moral}
               </p>
             </motion.div>
+          </div>
+          <div onClick={()=>{
+            props.getStoryMaker();
+          }} className="w-full flex justify-center lg:justify-end items-center lg:px-8 mt-2">
+            <button className="cursor-pointer rounded-lg px-2 py-2 bg-orange-300">
+              Make your own story
+            </button>
           </div>
         </div>
       </motion.div>

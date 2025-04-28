@@ -31,6 +31,7 @@ export default function HomePage() {
   const [showMoralStoriesModal, setShowMoralStoriesModal] = useState(false);
   const [showThoughtsModal, setShowThoughtsModal] = useState(false);
   const [showThoughtsTopicModal, setShowThoughtsTopicModal] = useState(false);
+  const [showStoryMaker, setShowStoryMaker] = useState(false);
   const [quizParams, setQuizParams] = useState({ topic: null, grade: null });
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
@@ -126,6 +127,7 @@ export default function HomePage() {
         setShowMoralStoriesModal(false);
         setShowThoughtsModal(false);
         setShowThoughtsTopicModal(false);
+        setShowStoryMaker(false);
         setIsDrawerOpen(false);
         stopSpeech();
         if (listening) {
@@ -306,7 +308,7 @@ export default function HomePage() {
           width={300}
           height={300}
           quality={100}
-          className="absolute top-60 lg:top-[350px] right-1/12 lg:right-[850px] z-0 opacity-50"
+          className="fixed top-60 lg:top-[350px] right-1/12 lg:right-[850px] z-0 opacity-50"
         />
         <Header setShowProfileModal={setShowProfileModal} />
         <main className="flex-1 flex flex-col w-full max-w-4xl mx-auto py-4 mt-24 mb-40 lg:mb-24 z-10">
@@ -547,6 +549,8 @@ export default function HomePage() {
           setShowThoughtsModal={setShowThoughtsModal}
           handleStartQuiz={handleStartQuiz}
           handleStartGame={handleStartGame}
+          showStoryMaker={showStoryMaker}
+          setShowStoryMaker={setShowStoryMaker}
           showThoughtsTopicModal={showThoughtsTopicModal}
           setShowThoughtsTopicModal={setShowThoughtsTopicModal}
           handleWriteThought={handleWriteThought}
