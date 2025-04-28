@@ -188,6 +188,7 @@ export default function HomePage() {
       pitch: 1,
     });
     if (utterance) {
+      console.log('utternece found')
       setIsSpeaking(true);
       utterance.onend = () => setIsSpeaking(false);
     }

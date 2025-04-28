@@ -16,6 +16,7 @@ export const textToSpeech = async (text, options = {}) => {
   utterance.rate = options.rate || 1.2;
   utterance.volume = options.volume || 1;
 
+  // Function to get voices, waiting for onvoiceschanged if necessary
   const getVoices = () =>
     new Promise((resolve) => {
       let voices = window.speechSynthesis.getVoices();
@@ -29,20 +30,86 @@ export const textToSpeech = async (text, options = {}) => {
       };
     });
 
+  // Retry fetching voices with a timeout
+  const maxRetries = 5;
+  let retries = 0;
+  let voices = [];
+  while (retries < maxRetries && voices.length === 0) {
+    voices = await getVoices();
+    if (voices.length === 0) {
+      await new Promise((resolve) => setTimeout(resolve, 500)); // Wait 500ms
+      retries++;
+    }
+  }
 
-  const voices = await getVoices();
-
-  const ziraVoice = voices.find(
-    (voice) => voice.name === "Microsoft Zira - English (United States)"
-  );
-
-  if (!ziraVoice) {
-    console.error("Microsoft Zira voice not found.");
+  if (voices.length === 0) {
+    console.error("No voices available after retries.");
     return null;
   }
 
-  utterance.voice = ziraVoice;
-  window.speechSynthesis.speak(utterance);
+  console.log("Available voices:", voices.map((v) => v.name));
+
+  // List of names commonly associated with female voices
+  const femaleVoiceNames = [
+    "Zira",
+    "Aria",
+    "Jenny",
+    "Samantha",
+    "Susan",
+    "Hazel",
+    "Cortana",
+    "Michelle",
+    "Emily",
+    "Mary",
+    "Linda",
+  ];
+
+  // Find Zira voice
+  let selectedVoice = voices.find(
+    (voice) => voice.name === "Microsoft Zira - English (United States)"
+  );
+
+  // Fall back to any female-named voice (prioritizing en-US)
+  if (!selectedVoice) {
+    selectedVoice = voices.find(
+      (voice) =>
+        femaleVoiceNames.some((name) => voice.name.includes(name)) &&
+        voice.lang === "en-US"
+    );
+  }
+
+  // Fall back to any female-named voice (any language)
+  if (!selectedVoice) {
+    selectedVoice = voices.find((voice) =>
+      femaleVoiceNames.some((name) => voice.name.includes(name))
+    );
+  }
+
+  // Fall back to any en-US voice
+  if (!selectedVoice) {
+    selectedVoice = voices.find((voice) => voice.lang === "en-US");
+  }
+
+  // Fall back to any voice
+  if (!selectedVoice) {
+    selectedVoice = voices[0];
+  }
+
+  if (!selectedVoice) {
+    console.error("No suitable voice found.");
+    return null;
+  }
+
+  console.log("Selected voice:", selectedVoice.name);
+
+  utterance.voice = selectedVoice;
+
+  try {
+    window.speechSynthesis.speak(utterance);
+  } catch (error) {
+    console.error("Error initiating speech:", error);
+    return null;
+  }
 
   return utterance;
 };
