@@ -30,16 +30,25 @@ export function MobileMenu({menuItems}) {
       </span>
 
       {menuItems.map((item, index) => {
-        const translateY = `translate-y-[-${70 * (index + 1)}px]`;
-        const delay = `delay-${100 * (index + 1)}`;
+        let translation;
+        if (index == 0) {
+          translation = "translate-y-[-70px] delay-100";
+        } else if (index == 1) {
+          translation = "translate-y-[-140px] delay-200";
+        } else if (index == 2) {
+          translation = "translate-y-[-210px] delay-300";
+        } else {
+            translation = "translate-y-[-280px] delay-400";
+        }
 
         return (
           <button
-            key={item.label} 
+            key={index}
             className={`absolute flex justify-center items-center w-10 h-10 rounded-full bg-yellow-400 border-2 border-yellow-400 text-yellow-400 font-bold transition-all duration-300 shadow-md ${
-              checked ? `${translateY} ${delay}` : "shadow-none translate-y-0"
+              checked
+                ? `${translation}`
+                : "shadow-none translate-y-0"
             }`}
-            onClick={item.action} 
           >
             <Image
               src={item.icon}
