@@ -20,9 +20,10 @@ function ModelWidgets(props) {
         maxWidth="w-full"
       >
         <Profile
-          isProfile={true}
+          isProfile={false}
           fName={props.userData?.firstName}
           lName={props.userData?.lastName}
+          onClose={() => props.setShowProfileModal(false)}
         />
       </Modal>
 

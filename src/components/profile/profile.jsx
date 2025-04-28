@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState, useCallback } from "react";
@@ -11,7 +10,7 @@ import { avatarOptions } from "@/libs/utils";
 
 const { Title } = Typography;
 
-export default function Profile({ isProfile, fName, lName }) {
+export default function Profile({ isProfile, fName, lName, onClose }) {
   const [firstName, setFirstName] = useState(fName);
   const [lastName, setLastName] = useState(lName);
   const [selectedAvatar, setSelectedAvatar] = useState(avatarOptions[0]);
@@ -66,7 +65,7 @@ export default function Profile({ isProfile, fName, lName }) {
   }
 
   return (
-    <div className="w-full max-w-3xl mx-auto bg-white rounded-2xl shadow-xl p-4 sm:p-6 md:p-8 transform transition-all max-h-[calc(100vh-2rem)] overflow-y-auto sm:max-h-none sm:overflow-y-visible scroll-smooth">
+    <div className="w-full max-w-3xl mx-auto bg-white rounded-2xl shadow-xl p-4 sm:p-6 md:p-8 transform transition-all max-h-[90vh] overflow-y-auto scroll-smooth custom-scrollbar">
       <div className="flex justify-center mb-6 sm:mb-8">
         <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold flex items-center text-gray-800">
           <Image
@@ -160,7 +159,15 @@ export default function Profile({ isProfile, fName, lName }) {
           className="w-full sm:flex-1 h-10 sm:h-12 bg-blue-600 text-white rounded-xl hover:bg-blue-700  transition-all font-medium text-sm sm:text-base"
         >
           Save Profile
-        </Button>     
+        </Button>
+        {!isProfile && (
+          <Button
+            onClick={onClose}
+            className="w-full sm:flex-1 h-10 sm:h-12 bg-blue-600 text-white rounded-xl hover:bg-blue-700  transition-all font-medium text-sm sm:text-base"
+          >
+           close
+          </Button>
+        )}
       </div>
     </div>
   );
