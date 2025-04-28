@@ -97,7 +97,7 @@ function SignupContent() {
           if (!userDoc.exists()) {
             await setDoc(userDocRef, {
               email: emailAddress,
-              avatar: `/avatar${Math.floor(Math.random() * 29) + 1}.png`,
+              avatar: `/avatars/avatar${Math.floor(Math.random() * 29) + 1}.png`,
               firstName: "",
               lastName: "",
               createdAt: new Date(),
@@ -145,7 +145,7 @@ function SignupContent() {
     }
   }, [isLoaded, signUp]);
 
-  // Handle OAuth callback (Google and Facebook)
+
   useEffect(() => {
     const handleOAuthCallback = async () => {
       if (!isLoaded) return;
@@ -207,10 +207,11 @@ function SignupContent() {
               Chinnu
             </h1>
           </div>
+          <div className="text-blue-500 text-center mb-6 font-bold text-2xl">Sign Up To Get Started</div>
           <div className="space-y-3 flex flex-col justify-center items-center">
             <button
               onClick={handleGoogleSignup}
-              className="w-3/4 py-2 px-4 border border-gray-800 rounded-md flex gap-3 items-center justify-center text-gray-700 hover:bg-gray-100 cursor-pointer"
+              className="w-full lg:w-3/4 py-2 px-4 border border-gray-800 rounded-md flex gap-3 items-center justify-center text-gray-700 hover:bg-gray-100 cursor-pointer"
             >
               <Image
                 src="/logos/google.png"
@@ -222,7 +223,7 @@ function SignupContent() {
             </button>
             <button
               onClick={handleFacebookSignup}
-              className="w-3/4 py-2 px-4 border border-gray-800 rounded-md flex gap-3 items-center justify-center text-gray-700 hover:bg-gray-100 cursor-pointer"
+              className="w-full lg:w-3/4 py-2 px-4 border border-gray-800 rounded-md flex gap-3 items-center justify-center text-gray-700 hover:bg-gray-100 cursor-pointer"
             >
               <Image
                 src="/logos/facebook.png"
@@ -230,7 +231,7 @@ function SignupContent() {
                 width={25}
                 height={25}
               />
-              Continue with Facebook
+              Continue with FaceBook
             </button>
           </div>
           <div className="mt-4 space-y-4">
@@ -277,7 +278,7 @@ function SignupContent() {
             </div>
           </div>
           {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
-          <div id="clerk-captcha"></div>
+          <div id="clerk-captcha" className="mt-2"></div>
           <button
             onClick={handleSubmit}
             className="w-full mt-4 py-2 px-4 bg-gray-100 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-200 cursor-pointer"
@@ -285,7 +286,7 @@ function SignupContent() {
             {buttonLoading ? <LoadingOutlined /> : "Sign Up"}
           </button>
           <div className="mt-4 text-center">
-            <p className="text-sm text-gray-600">
+            <p className="text-normal text-gray-600">
               Already have an account?{" "}
               <Link href="/sign-in" className="text-blue-500 hover:underline">
                 Log in
@@ -347,7 +348,7 @@ function SignupContent() {
   );
 }
 
-// Main page component with Suspense
+
 export default function SignupPage() {
   return (
     <Suspense

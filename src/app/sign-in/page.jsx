@@ -84,7 +84,7 @@ function SigninContent() {
   const handleGoogleSignin = useCallback(async () => {
     if (!isLoaded) return;
     try {
-      await signIn.authenticateWithRedirect({
+      const result = await signIn.authenticateWithRedirect({
         strategy: "oauth_google",
         redirectUrl: "/sso-callback",
         redirectUrlComplete: "/",
@@ -153,10 +153,11 @@ function SigninContent() {
             Chinnu
           </h1>
         </div>
+        <div className="text-blue-500 text-center mb-6 font-bold text-2xl">Sign In To Your Account</div>
         <div className="space-y-3 flex flex-col justify-center items-center">
           <button
             onClick={handleFacebookSignin}
-            className="w-3/4 py-2 px-4 border border-gray-800 rounded-md flex gap-3 items-center justify-center text-gray-700 hover:bg-gray-100 cursor-pointer"
+            className="w-full lg:w-3/4 py-2 px-4 border border-gray-800 rounded-md flex gap-3 items-center justify-center text-gray-700 hover:bg-gray-100 cursor-pointer"
           >
             <Image
               src="/logos/facebook.png"
@@ -168,7 +169,7 @@ function SigninContent() {
           </button>
           <button
             onClick={handleGoogleSignin}
-            className="w-3/4 py-2 px-4 border border-gray-800 rounded-md flex gap-3 items-center justify-center text-gray-700 hover:bg-gray-100 cursor-pointer"
+            className="w-full lg:w-3/4 py-2 px-4 border border-gray-800 rounded-md flex gap-3 items-center justify-center text-gray-700 hover:bg-gray-100 cursor-pointer"
           >
             <Image
               src="/logos/google.png"
@@ -223,14 +224,7 @@ function SigninContent() {
           </div>
         </div>
         {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
-        <div className="mt-2 text-right">
-          <Link
-            href="/forgot-password"
-            className="text-sm text-blue-500 hover:underline"
-          >
-            Forgot password?
-          </Link>
-        </div>
+
         <button
           onClick={handleSubmit}
           className="w-full mt-4 py-2 px-4 bg-gray-100 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-200 cursor-pointer"
@@ -238,7 +232,7 @@ function SigninContent() {
           {buttonLoading ? <LoadingOutlined /> : "Log in"}
         </button>
         <div className="mt-4 text-center">
-          <p className="text-sm text-gray-600">
+          <p className="text-normal text-gray-600">
             Don’t have an account?{" "}
             <Link href="/sign-up" className="text-blue-500 hover:underline">
               Sign up

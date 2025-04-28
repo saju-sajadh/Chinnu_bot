@@ -88,7 +88,7 @@ export default function HomePage() {
       const sendWelcomeMessage = async () => {
         setIsLoading(true);
         const fullName =
-          userData.firstName + "  " + userData.lastName || "friend";
+          userData.firstName || "friend";
         const userName = fullName;
         const welcomePrompt = `Greet ${userName} in a friendly, concise way telling about cvp.`;
         try {
@@ -413,7 +413,7 @@ export default function HomePage() {
                 <MobileMenu menuItems={menuItems} />
               </motion.div>
             </div>
-            <div className="flex items-center gap-3 bg-gradient-to-r from-pink-200 to-yellow-200 rounded-2xl p-4 border-4 border-pink-400">
+            <div className="flex px-3 items-center gap-3 bg-gradient-to-r from-pink-200 to-yellow-200 rounded-2xl p-4 border-4 border-pink-400">
               <motion.button
                 className={`p-2 flex justify-center items-center cursor-pointer rounded-full ${
                   listening ? "bg-red-500" : "bg-blue-500"
