@@ -404,7 +404,7 @@ export default function HomePage() {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
           >
-            <div className="absolute lg:hidden -top-4 left-1">
+            <div className="absolute lg:hidden -top-6 left-1">
               <motion.div
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
