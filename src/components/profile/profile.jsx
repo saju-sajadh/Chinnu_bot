@@ -160,16 +160,7 @@ export default function Profile({ isProfile, fName, lName }) {
           className="w-full sm:flex-1 h-10 sm:h-12 bg-blue-600 text-white rounded-xl hover:bg-blue-700  transition-all font-medium text-sm sm:text-base"
         >
           Save Profile
-        </Button>
-        {!isProfile && (
-          <Button
-            onClick={handleSkip}
-            disabled={loading}
-            className="w-full sm:flex-1 h-10 sm:h-12 bg-gray-100 text-gray-700  rounded-xl hover:bg-gray-200  transition-all font-medium text-sm sm:text-base"
-          >
-            Skip for Now
-          </Button>
-        )}
+        </Button>     
       </div>
     </div>
   );

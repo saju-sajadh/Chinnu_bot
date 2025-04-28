@@ -15,13 +15,8 @@ const sourGummy = Sour_Gummy({
 function Header({ setShowProfileModal }) {
   const router = useRouter();
 
-  const buttonVariants = {
-    hover: { scale: 1.1, rotate: 5 },
-    tap: { scale: 0.95 },
-  };
-
   return (
-    <header className="fixed top-0 w-full z-10 flex justify-between items-center px-4 sm:px-8 bg-white ">
+    <header className="fixed top-0 w-full z-20 flex justify-between items-center px-4 sm:px-8 bg-white ">
       <motion.div
         className="flex items-center gap-3 cursor-pointer py-2"
         whileHover="hover"
@@ -48,10 +43,9 @@ function Header({ setShowProfileModal }) {
       </motion.div>
 
       <motion.button
-        className="absolute right-2 bottom-0 cursor-pointer bg-white  hover:bg-green-100 transition-colors"
+        className="absolute right-2 bottom-0 cursor-pointer bg-white transition-colors"
         onClick={() => setShowProfileModal(true)}
         aria-label="Open profile modal"
-        variants={buttonVariants}
         whileHover="hover"
         whileTap="tap"
         initial={{ scale: 1 }}

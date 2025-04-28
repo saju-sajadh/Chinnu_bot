@@ -3,12 +3,7 @@
 import { getDoc, _firestore, doc } from "@/libs/firebase";
 import { useUser } from "@clerk/nextjs";
 import { useEffect, useState, useRef } from "react";
-import {
-  LoadingOutlined,
-  MenuOutlined,
-  SendOutlined,
-  SoundOutlined,
-} from "@ant-design/icons";
+import { SendOutlined, SoundOutlined, AudioOutlined } from "@ant-design/icons";
 import { fetchGeminiResponse } from "@/genai/prompt";
 import { textToSpeech, stopSpeech } from "@/libs/textToSpeech";
 import ModelWidgets from "@/components/widgets/model_widgets";
@@ -18,6 +13,11 @@ import DailyMoralValue from "@/genai/daily-prompt";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Head from "next/head";
+import { MobileMenu } from "@/components/widgets/mobile-menu";
+import SpeechRecognition, {
+  useSpeechRecognition,
+} from "react-speech-recognition";
+import { mic_off, mic_on } from "@/libs/utils";
 
 export default function HomePage() {
   const { user, isLoaded } = useUser();
@@ -37,18 +37,37 @@ export default function HomePage() {
   const [isLoading, setIsLoading] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [selectedTopic, setSelectedTopic] = useState(null);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const messagesEndRef = useRef(null);
+  const hasSentWelcomeMessage = useRef(false);
+
+  const {
+    transcript,
+    listening,
+    resetTranscript,
+    browserSupportsSpeechRecognition,
+    isMicrophoneAvailable,
+  } = useSpeechRecognition({
+    onError: (event) => {
+      SpeechRecognition.stopListening();
+    },
+    onEnd: () => {},
+  });
+
+  useEffect(() => {
+    if (listening) {
+      setInput(transcript);
+    }
+  }, [transcript, listening]);
 
   const fetchData = async () => {
     try {
       if (!isLoaded || !user || !_firestore) {
-        console.log("Firestore or user not ready yet");
         return;
       }
       const userDocRef = doc(_firestore, "users", user.id);
       const userDoc = await getDoc(userDocRef);
       if (!userDoc.exists()) {
-        console.log("User document does not exist");
         return;
       }
       setUserData(userDoc.data());
@@ -64,6 +83,38 @@ export default function HomePage() {
   }, [isLoaded, user]);
 
   useEffect(() => {
+    if (userData && !hasSentWelcomeMessage.current) {
+      const sendWelcomeMessage = async () => {
+        setIsLoading(true);
+        const fullName =
+          userData.firstName + "  " + userData.lastName || "friend";
+        const userName = fullName;
+        const welcomePrompt = `Greet ${userName} in a friendly, concise way telling about cvp.`;
+        try {
+          const response = await fetchGeminiResponse(welcomePrompt);
+          const botMessage = { text: response, sender: "bot" };
+          setMessages([botMessage]);
+          setIsLoading(false);
+          const utterance = await textToSpeech(response, {
+            lang: "en-US",
+            rate: 1,
+            pitch: 1,
+          });
+          if (utterance) {
+            setIsSpeaking(true);
+            utterance.onend = () => setIsSpeaking(false);
+          }
+        } catch (error) {
+          console.error("Error sending welcome message:", error);
+          setIsLoading(false);
+        }
+        hasSentWelcomeMessage.current = true;
+      };
+      sendWelcomeMessage();
+    }
+  }, [userData]);
+
+  useEffect(() => {
     const handleEscape = (e) => {
       if (e.key === "Escape") {
         setShowProfileModal(false);
@@ -75,12 +126,17 @@ export default function HomePage() {
         setShowMoralStoriesModal(false);
         setShowThoughtsModal(false);
         setShowThoughtsTopicModal(false);
+        setIsDrawerOpen(false);
         stopSpeech();
+        if (listening) {
+          SpeechRecognition.stopListening();
+          resetTranscript();
+        }
       }
     };
     window.addEventListener("keydown", handleEscape);
     return () => window.removeEventListener("keydown", handleEscape);
-  }, []);
+  }, [listening]);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -109,20 +165,32 @@ export default function HomePage() {
   };
 
   const handleSendMessage = async () => {
+    if (listening) {
+      if (mic_off)
+        mic_off.play().catch((err) => console.error("Audio error:", err));
+      SpeechRecognition.stopListening();
+      resetTranscript();
+    }
     if (!input.trim()) return;
 
     const userMessage = { text: input, sender: "user" };
     setMessages((prev) => [...prev, userMessage]);
     setInput("");
+    resetTranscript();
     setIsLoading(true);
     const response = await fetchGeminiResponse(input);
     const botMessage = { text: response, sender: "bot" };
     setMessages((prev) => [...prev, botMessage]);
     setIsLoading(false);
-    textToSpeech(response, { lang: "en-US", rate: 1, pitch: 1 });
-    setIsSpeaking(true);
-    const utterance = new SpeechSynthesisUtterance(response);
-    utterance.onend = () => setIsSpeaking(false);
+    const utterance = await textToSpeech(response, {
+      lang: "en-US",
+      rate: 1,
+      pitch: 1,
+    });
+    if (utterance) {
+      setIsSpeaking(true);
+      utterance.onend = () => setIsSpeaking(false);
+    }
   };
 
   const handleKeyPress = (e) => {
@@ -142,7 +210,63 @@ export default function HomePage() {
     }
   };
 
-  // Animation variants
+  const toggleRecording = () => {
+    if (!browserSupportsSpeechRecognition) {
+      alert("Mic is not supported in your browser, try chrome!");
+      return;
+    }
+    if (!isMicrophoneAvailable) {
+      alert(
+        "Microphone is not available. Please check your device settings or permissions."
+      );
+      return;
+    }
+
+    if (listening) {
+      if (mic_off)
+        mic_off.play().catch((err) => console.error("Audio error:", err));
+      SpeechRecognition.stopListening();
+      resetTranscript();
+    } else {
+      if (mic_on)
+        mic_on.play().catch((err) => console.error("Audio error:", err));
+      try {
+        SpeechRecognition.startListening({
+          continuous: true,
+          language: "en-US",
+          interimResults: true,
+        });
+      } catch (error) {
+        if (mic_off)
+          mic_off.play().catch((err) => console.error("Audio error:", err));
+        console.error("Error starting speech recognition:", error);
+      }
+    }
+  };
+
+  const menuItems = [
+    {
+      label: "Quiz",
+      icon: "/logos/quiz.png",
+      action: () => setShowQuizModal(true),
+    },
+    {
+      label: "Games",
+      icon: "/logos/games.png",
+      action: () => setShowGamesModal(true),
+    },
+    {
+      label: "Stories",
+      icon: "/logos/stories.png",
+      action: () => setShowMoralStoriesModal(true),
+    },
+    {
+      label: "Thoughts",
+      icon: "/logos/thoughts.png",
+      action: () => setShowThoughtsModal(true),
+    },
+  ];
+
   const messageVariants = {
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },
@@ -157,14 +281,7 @@ export default function HomePage() {
   if (!userData || !isLoaded) {
     return (
       <div className="w-full h-screen flex justify-center items-center bg-gradient-to-r from-yellow-300 via-pink-300 to-blue-300">
-        <motion.div
-          animate={{ scale: [1, 1.2, 1] }}
-          transition={{ repeat: Infinity, duration: 1 }}
-          className="text-3xl font-bold text-purple-600"
-          style={{ fontFamily: "'Comic Neue', cursive" }}
-        >
-          <DailyMoralValue />
-        </motion.div>
+        <DailyMoralValue />
       </div>
     );
   }
@@ -179,7 +296,7 @@ export default function HomePage() {
         />
       </Head>
       <div
-        className="relative min-h-screen flex flex-col bg-gradient-to-r from-yellow-200 via-pink-200 to-blue-200"
+        className="relative min-h-screen flex flex-col bg-gradient-to-r from-blue-200 via-pink-200 to-yellow-200"
         style={{ fontFamily: "'Comic Neue', cursive" }}
       >
         <Image
@@ -187,12 +304,10 @@ export default function HomePage() {
           alt=""
           width={300}
           height={300}
-          quality={90}
-          className="absolute top-60 lg:w-96 lg:top-[350px] right-1/12 lg:right-[850px] z-0 opacity-30"
+          quality={100}
+          className="absolute top-60 lg:top-[350px] right-1/12 lg:right-[850px] z-0 opacity-50"
         />
-        <Header
-          setShowProfileModal={setShowProfileModal}
-        />
+        <Header setShowProfileModal={setShowProfileModal} />
         <main className="flex-1 flex flex-col w-full max-w-4xl mx-auto py-4 mt-24 mb-40 lg:mb-24 z-10">
           <div className="flex-1 overflow-y-auto pb-32 sm:pb-48">
             {messages.map((message, index) => (
@@ -218,14 +333,15 @@ export default function HomePage() {
                       alt="Bot Avatar"
                       width={32}
                       height={32}
-                      className="rounded-full"
+                      quality={100}
+                      className="rounded-full bg-[#FEF7DE]"
                     />
                   )}
                   <span>{message.text}</span>
                   {message.sender === "bot" && (
                     <motion.button
                       onClick={() => toggleSpeech(message.text)}
-                      className="p-2 rounded-full bg-white/50 hover:bg-white transition-colors"
+                      className="py-1 px-2 rounded-full bg-white/50 hover:bg-white transition-colors"
                       aria-label={isSpeaking ? "Stop speech" : "Read aloud"}
                       variants={buttonVariants}
                       whileHover="hover"
@@ -244,6 +360,7 @@ export default function HomePage() {
                       alt="User Avatar"
                       width={32}
                       height={32}
+                      quality={100}
                       className="rounded-full"
                     />
                   )}
@@ -263,6 +380,7 @@ export default function HomePage() {
                     alt="Bot Avatar"
                     width={32}
                     height={32}
+                    quality={100}
                     className="rounded-full"
                   />
                   <motion.span
@@ -278,21 +396,48 @@ export default function HomePage() {
             <div ref={messagesEndRef} />
           </div>
           <motion.div
-            className="fixed bottom-0  left-0 right-0 bg-white/80 backdrop-blur-sm rounded-t-3xl shadow-2xl p-6 z-10 max-w-4xl mx-auto"
+            className="fixed bottom-0 left-0 right-0 bg-white/80 backdrop-blur-sm rounded-t-3xl shadow-2xl p-6 z-10 max-w-4xl mx-auto"
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
           >
             <div className="absolute lg:hidden -top-4 left-1">
-              <Image
-                src={"/logos/menu.png"}
-                alt="menu"
-                width={10}
-                height={10}
-                className="w-10 h-10"
-              />
+              <motion.div
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setIsDrawerOpen(!isDrawerOpen)}
+              >
+                <MobileMenu menuItems={menuItems} />
+              </motion.div>
             </div>
             <div className="flex items-center gap-3 bg-gradient-to-r from-pink-200 to-yellow-200 rounded-2xl p-4 border-4 border-pink-400">
+              <motion.button
+                className={`p-2 flex justify-center items-center cursor-pointer rounded-full ${
+                  listening ? "bg-red-500" : "bg-blue-500"
+                } text-white hover:bg-opacity-80 transition-colors ${
+                  !browserSupportsSpeechRecognition || !isMicrophoneAvailable
+                    ? "opacity-50 cursor-not-allowed"
+                    : ""
+                }`}
+                onClick={toggleRecording}
+                disabled={
+                  !browserSupportsSpeechRecognition || !isMicrophoneAvailable
+                }
+                variants={buttonVariants}
+                whileHover="hover"
+                whileTap="tap"
+                animate={
+                  listening
+                    ? {
+                        scale: [1, 1.1, 1],
+                        transition: { repeat: Infinity, duration: 0.8 },
+                      }
+                    : {}
+                }
+                aria-label={listening ? "Stop recording" : "Start recording"}
+              >
+                <AudioOutlined className="!text-xl" />
+              </motion.button>
               <input
                 type="text"
                 placeholder="Ask me anything..."
@@ -380,33 +525,33 @@ export default function HomePage() {
             </div>
           </motion.div>
         </main>
+        <ModelWidgets
+          showProfileModal={showProfileModal}
+          setShowProfileModal={setShowProfileModal}
+          userData={userData}
+          showQuizModal={showQuizModal}
+          setShowQuizModal={setShowQuizModal}
+          showMoralStoriesModal={showMoralStoriesModal}
+          setShowMoralStoriesModal={setShowMoralStoriesModal}
+          showQuizGameModal={showQuizGameModal}
+          setShowQuizGameModal={setShowQuizGameModal}
+          quizParams={quizParams}
+          showGamesModal={showGamesModal}
+          setShowGamesModal={setShowGamesModal}
+          showTicTacToeModal={showTicTacToeModal}
+          setShowTicTacToeModal={setShowTicTacToeModal}
+          showChessModal={showChessModal}
+          setShowChessModal={setShowChessModal}
+          showThoughtsModal={showThoughtsModal}
+          setShowThoughtsModal={setShowThoughtsModal}
+          handleStartQuiz={handleStartQuiz}
+          handleStartGame={handleStartGame}
+          showThoughtsTopicModal={showThoughtsTopicModal}
+          setShowThoughtsTopicModal={setShowThoughtsTopicModal}
+          handleWriteThought={handleWriteThought}
+          selectedTopic={selectedTopic}
+        />
       </div>
-      <ModelWidgets
-        showProfileModal={showProfileModal}
-        setShowProfileModal={setShowProfileModal}
-        userData={userData}
-        showQuizModal={showQuizModal}
-        setShowQuizModal={setShowQuizModal}
-        showMoralStoriesModal={showMoralStoriesModal}
-        setShowMoralStoriesModal={setShowMoralStoriesModal}
-        showQuizGameModal={showQuizGameModal}
-        setShowQuizGameModal={setShowQuizGameModal}
-        quizParams={quizParams}
-        showGamesModal={showGamesModal}
-        setShowGamesModal={setShowGamesModal}
-        showTicTacToeModal={showTicTacToeModal}
-        setShowTicTacToeModal={setShowTicTacToeModal}
-        showChessModal={showChessModal}
-        setShowChessModal={setShowChessModal}
-        showThoughtsModal={showThoughtsModal}
-        setShowThoughtsModal={setShowThoughtsModal}
-        handleStartQuiz={handleStartQuiz}
-        handleStartGame={handleStartGame}
-        showThoughtsTopicModal={showThoughtsTopicModal}
-        setShowThoughtsTopicModal={setShowThoughtsTopicModal}
-        handleWriteThought={handleWriteThought}
-        selectedTopic={selectedTopic}
-      />
     </>
   );
 }

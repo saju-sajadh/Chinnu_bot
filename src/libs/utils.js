@@ -240,6 +240,9 @@ const buttonWrapperClasses = "flex items-center gap-2 cursor-pointer";
 const buttonClasses =
   "flex items-center gap-2 bg-white rounded-full py-2 px-4 shadow-sm hover:bg-gray-100 transition-colors text-lg text-gray-900 cursor-pointer";
 
+const mic_on = typeof Audio !== "undefined" ? new Audio("/sounds/mic_on.mp3") : null;
+const mic_off = typeof Audio !== "undefined" ? new Audio("/sounds/mic_off.mp3") : null;
+
 export {
   avatarOptions,
   containerClasses,
@@ -247,4 +250,6 @@ export {
   buttonWrapperClasses,
   buttonClasses,
   moralValues,
+  mic_on,
+  mic_off
 };
