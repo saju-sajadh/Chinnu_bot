@@ -308,7 +308,7 @@ export default function HomePage() {
           width={300}
           height={300}
           quality={100}
-          className="fixed top-60 lg:top-[350px] right-1/12 lg:right-[850px] z-0 opacity-50"
+          className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-0 opacity-50"
         />
         <Header setShowProfileModal={setShowProfileModal} />
         <main className="flex-1 flex flex-col w-full max-w-4xl mx-auto py-4 mt-24 mb-40 lg:mb-24 z-10">
