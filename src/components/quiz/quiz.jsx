@@ -37,7 +37,7 @@ export default function Quiz({ onClose, onStartQuiz }) {
   return (
     <>
       <Head>
-        <title>Chinnu Fun Quiz</title>
+        <title>Siddha Fun Quiz</title>
         <link
           href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap"
           rel="stylesheet"
@@ -59,13 +59,13 @@ export default function Quiz({ onClose, onStartQuiz }) {
             <h1 className="text-4xl sm:text-5xl font-bold flex items-center text-purple-600 drop-shadow-lg">
               <Image
                 src="/logos/xai-logo.png"
-                alt="Chinnu Logo"
+                alt="Siddha Logo"
                 width={60}
                 height={60}
                 priority
                 className="mr-3 rounded-full shadow-md"
               />
-              Chinnu
+              Siddha
             </h1>
           </div>
 

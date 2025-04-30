@@ -27,7 +27,7 @@ export default function WeeklyMoralStory(props) {
   return (
     <>
       <Head>
-        <title>Chinnu Weekly Story</title>
+        <title>Siddha Weekly Story</title>
       </Head>
       <motion.div
         initial={{ opacity: 0, y: 20 }}

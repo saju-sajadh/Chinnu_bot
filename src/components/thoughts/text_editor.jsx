@@ -181,7 +181,7 @@ export default function RichTextEditor({ selectedTopic }) {
   return (
     <>
       <Head>
-        <title>Chinnu Writing Adventure</title>
+        <title>Siddhas Writing Adventure</title>
       </Head>
       <div className="min-h-screen flex items-center justify-center lg:p-4">
         <motion.div

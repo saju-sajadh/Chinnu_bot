@@ -29,14 +29,14 @@ function Header({ setShowProfileModal }) {
           }}
           src="/logos/xai-logo.png"
           alt="xAI Logo"
-          width={50}
-          height={50}
-          className="rounded-full border-4 border-white shadow-md bg-[#FEF7DE]"
+          width={60}
+          height={60}
+          className="rounded-full py-1 border-4 border-white shadow-md bg-[#FEF7DE]"
           priority
         />
         <div className="grid lg:flex jsutify-center items-center">
           <span className="text-3xl font-extrabold font-sans sm:text-4xl text-black drop-shadow-md">
-            Chinnu.AI
+            Siddha.AI
           </span>
           <span className={`lg:ml-2 lg:mt-4 text-base italic ${sourGummy.className}`}> Your AI Companion</span>
         </div>

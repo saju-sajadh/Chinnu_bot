@@ -25,13 +25,13 @@ export default function AboutPage() {
           <h1 className="text-3xl  flex items-center">
             <Image
               src="/logos/xai-logo.png"
-              alt="Chinnu Logo"
+              alt="Siddha Logo"
               width={55}
               height={55}
               priority
             />
             <div className="flex flex-col">
-            <span className="ml-2 font-bold">Chinnu</span>
+            <span className="ml-2 font-bold">Siddha</span>
             <span className={`ml-2 text-sm italic ${sourGummy.className}`}>Your AI Companion</span>
             </div>
           </h1>

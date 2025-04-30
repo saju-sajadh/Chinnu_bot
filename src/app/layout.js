@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Chin_nu",
-  description: "Chinnu - Chinmaya Chatbot",
+  title: "Siddha AI",
+  description: "Siddha - Chinmaya Chatbot",
 };
 
 export default function RootLayout({ children }) {

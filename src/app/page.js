@@ -292,7 +292,7 @@ export default function HomePage() {
   return (
     <>
       <Head>
-        <title>Chinnu</title>
+        <title>Siddha AI</title>
         <link
           href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap"
           rel="stylesheet"
@@ -337,7 +337,7 @@ export default function HomePage() {
                       width={32}
                       height={32}
                       quality={100}
-                      className="rounded-full bg-[#FEF7DE]"
+                      className="rounded-full py-1 bg-[#FEF7DE]"
                     />
                   )}
                   <span>{message.text}</span>

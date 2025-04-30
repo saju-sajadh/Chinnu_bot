@@ -12,10 +12,10 @@ export default function InstallPage() {
         <div className="flex items-center space-x-3">
           <img
             src="/logos/xai-logo.png"
-            alt="Chinnu.ai Logo"
+            alt="Siddha.ai Logo"
             className="w-10 h-10 rounded-full border-2 border-blue-200"
           />
-          <span className="text-xl font-semibold text-gray-800">chinnu.ai</span>
+          <span className="text-xl font-semibold text-gray-800">Siddha.ai</span>
         </div>
       </header>
 

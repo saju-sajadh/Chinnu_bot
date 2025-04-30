@@ -167,7 +167,7 @@ export default function TicTacToe({ onClose }) {
   return (
     <>
       <Head>
-        <title>Chinnu Tic-Tac-Toe</title>
+        <title>Siddha Tic-Tac-Toe</title>
       </Head>
       <div className="min-h-screen flex items-center justify-center lg:p-6 p-2">
         <motion.div
@@ -183,7 +183,7 @@ export default function TicTacToe({ onClose }) {
             <h1 className="text-4xl sm:text-5xl font-bold flex items-center text-purple-600 drop-shadow-lg">
               <Image
                 src="/logos/xai-logo.png"
-                alt="Chinnu Logo"
+                alt="Siddha Logo"
                 width={60}
                 height={60}
                 priority
@@ -202,10 +202,10 @@ export default function TicTacToe({ onClose }) {
             {winner
               ? winner === "Draw"
                 ? "It's a Tie!"
-                : `${winner === "X" ? "You" : "Chinnu"} Wins!`
+                : `${winner === "X" ? "You" : "Siddha"} Wins!`
               : isPlayerTurn
               ? "Your Turn (X)"
-              : "Chinnu's Turn (O)"}
+              : "Siddha's Turn (O)"}
           </motion.h2>
 
           <div className="grid grid-cols-3 gap-4 w-80 mx-auto">

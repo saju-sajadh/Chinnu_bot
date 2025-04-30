@@ -70,13 +70,13 @@ export default function Profile({ isProfile, fName, lName, onClose }) {
         <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold flex items-center text-gray-800">
           <Image
             src="/logos/xai-logo.png"
-            alt="Chinnu Logo"
+            alt="Siddha Logo"
             width={40}
             height={40}
             priority
             className="mr-2 sm:w-12 sm:h-12 md:w-14 md:h-14"
           />
-          Chinnu
+          Siddha
         </h1>
       </div>
       <Title

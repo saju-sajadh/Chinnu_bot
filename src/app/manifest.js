@@ -1,8 +1,8 @@
 export default function manifest() {
   return {
-    name: "Chinnu",
-    short_name: "Chinnu",
-    description: "Chinnu",
+    name: "Siddha AI",
+    short_name: "Siddha AI",
+    description: "Siddha AI",
     start_url: "/",
     display: "standalone",
     background_color: "#ffffff",

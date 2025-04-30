@@ -112,7 +112,7 @@ export default function ChessGame({ onClose }) {
               if (drawSound) drawSound.play().catch((err) => console.error("Audio error:", err));
             }
           } else {
-            setStatus("Chinnu's Turn (Black)");
+            setStatus("Siddha's Turn (Black)");
             setTimeout(makeAIMove, 500);
           }
           setSelectedSquare(null);
@@ -148,7 +148,7 @@ export default function ChessGame({ onClose }) {
   return (
     <>
       <Head>
-        <title>Chinnu Chess</title>
+        <title>Siddha Chess</title>
       </Head>
       <div className="min-h-screen flex items-center justify-center lg:p-6">
         <motion.div
@@ -165,7 +165,7 @@ export default function ChessGame({ onClose }) {
             <h1 className="text-4xl sm:text-5xl font-bold flex items-center text-purple-600 drop-shadow-lg">
               <Image
                 src="/logos/xai-logo.png"
-                alt="Chinnu Logo"
+                alt="Siddha Logo"
                 width={60}
                 height={60}
                 priority

@@ -199,12 +199,12 @@ function SignupContent() {
             <h1 className="text-3xl font-bold flex items-center">
               <Image
                 src="/logos/xai-logo.png"
-                alt="Chinnu Logo"
-                width={55}
-                height={55}
+                alt="Siddha Logo"
+                width={60}
+                height={60}
                 priority
               />
-              Chinnu
+              Siddha AI
             </h1>
           </div>
           <div className="text-blue-500 text-center mb-6 font-bold text-2xl">Sign Up To Get Started</div>
@@ -295,7 +295,7 @@ function SignupContent() {
           </div>
           <div className="mt-6 text-center">
             <p className="text-xs text-gray-500">
-              By continuing, you agree to Chinnu’s{" "}
+              By continuing, you agree to Siddha’s{" "}
               <a href="#" className="underline">
                 Terms of Service
               </a>{" "}
@@ -313,12 +313,12 @@ function SignupContent() {
             <h1 className="text-3xl font-bold flex items-center">
               <Image
                 src="/logos/xai-logo.png"
-                alt="Chinnu Logo"
+                alt="Siddha Logo"
                 width={55}
                 height={55}
                 priority
               />
-              Chinnu
+              Siddha
             </h1>
           </div>
           <div className="flex flex-col gap-4 justify-center items-center">
