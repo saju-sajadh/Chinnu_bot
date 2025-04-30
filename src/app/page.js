@@ -337,7 +337,7 @@ export default function HomePage() {
                       width={32}
                       height={32}
                       quality={100}
-                      className="rounded-full py-1 bg-[#FEF7DE]"
+                      className="rounded-full py-1 px-1 bg-[#FEF7DE]"
                     />
                   )}
                   <span>{message.text}</span>

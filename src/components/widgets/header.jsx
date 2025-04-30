@@ -31,7 +31,7 @@ function Header({ setShowProfileModal }) {
           alt="xAI Logo"
           width={60}
           height={60}
-          className="rounded-full py-1 border-4 border-white shadow-md bg-[#FEF7DE]"
+          className="rounded-full py-1 px-1 border-4 border-white shadow-md bg-[#FEF7DE]"
           priority
         />
         <div className="grid lg:flex jsutify-center items-center">
