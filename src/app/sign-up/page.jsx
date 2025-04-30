@@ -344,6 +344,11 @@ function SignupContent() {
           )}
         </div>
       )}
+      <div className="fixed bottom-2 right-1/3 lg:right-6 text-sm lg:text-base">
+        <p className=" text-black bg-clip-text font-mono tracking-tight">
+          Powered by Techosa
+        </p>
+      </div>
     </div>
   );
 }

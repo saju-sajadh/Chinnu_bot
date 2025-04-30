@@ -153,7 +153,9 @@ function SigninContent() {
             Siddha AI
           </h1>
         </div>
-        <div className="text-blue-500 text-center mb-6 font-bold text-2xl">Sign In To Your Account</div>
+        <div className="text-blue-500 text-center mb-6 font-bold text-2xl">
+          Sign In To Your Account
+        </div>
         <div className="space-y-3 flex flex-col justify-center items-center">
           <button
             onClick={handleFacebookSignin}
@@ -253,10 +255,14 @@ function SigninContent() {
           </p>
         </div>
       </div>
+      <div className="fixed bottom-2 right-1/3 lg:right-6 text-sm lg:text-base">
+        <p className=" text-black bg-clip-text font-mono tracking-tight">
+          Powered by Techosa
+        </p>
+      </div>
     </div>
   );
 }
-
 
 export default function SigninPage() {
   return (

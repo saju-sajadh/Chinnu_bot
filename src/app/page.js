@@ -87,8 +87,7 @@ export default function HomePage() {
     if (userData && !hasSentWelcomeMessage.current) {
       const sendWelcomeMessage = async () => {
         setIsLoading(true);
-        const fullName =
-          userData.firstName || "friend";
+        const fullName = userData.firstName || "friend";
         const userName = fullName;
         const welcomePrompt = `Greet ${userName} in a friendly, concise way telling about cvp.`;
         try {
@@ -190,7 +189,7 @@ export default function HomePage() {
       pitch: 1,
     });
     if (utterance) {
-      console.log('utternece found')
+      console.log("utternece found");
       setIsSpeaking(true);
       utterance.onend = () => setIsSpeaking(false);
     }
@@ -285,6 +284,11 @@ export default function HomePage() {
     return (
       <div className="w-full h-screen flex justify-center items-center bg-gradient-to-r from-yellow-300 via-pink-300 to-blue-300">
         <DailyMoralValue />
+        <div className="fixed bottom-2 right-1/3 lg:right-6 text-sm lg:text-base">
+        <p className=" bg-gradient-to-br from-blue-600 via-pink-500 to-blue-500 text-transparent bg-clip-text font-mono tracking-tight">
+          Powered by Techosa
+        </p>
+      </div>
       </div>
     );
   }
@@ -556,6 +560,11 @@ export default function HomePage() {
           handleWriteThought={handleWriteThought}
           selectedTopic={selectedTopic}
         />
+        <div className="fixed bottom-32 lg:bottom-4 right-4 lg:right-6 text-sm lg:text-base">
+          <p className="bg-gradient-to-br from-blue-500 via-pink-300 to-blue-400 text-transparent bg-clip-text font-mono tracking-tight">
+            Powered by Techosa
+          </p>
+        </div>
       </div>
     </>
   );
