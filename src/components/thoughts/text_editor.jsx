@@ -135,7 +135,7 @@ export default function RichTextEditor({ selectedTopic }) {
       .map((entry) =>
         entry.role === "user"
           ? `<p><strong>You:</strong> ${entry.text}</p>`
-          : `<p><strong>Chinnu:</strong> ${entry.text}</p>`
+          : `<p><strong>Siddha:</strong> ${entry.text}</p>`
       )
       .join("");
     const updatedCharCount = newConversation

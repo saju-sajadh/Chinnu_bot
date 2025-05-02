@@ -284,11 +284,14 @@ export default function HomePage() {
     return (
       <div className="w-full h-screen flex justify-center items-center bg-gradient-to-r from-yellow-300 via-pink-300 to-blue-300">
         <DailyMoralValue />
+
         <div className="fixed bottom-2 right-1/3 lg:right-6 text-sm lg:text-base">
-        <p className=" bg-gradient-to-br from-blue-600 via-pink-500 to-blue-500 text-transparent bg-clip-text font-mono tracking-tight">
-          Powered by Techosa
-        </p>
-      </div>
+          <img
+            src="/logos/TECHOSA.png"
+            alt="Powered by Techosa"
+            className="h-6 lg:h-8"
+          />
+        </div>
       </div>
     );
   }
@@ -417,7 +420,7 @@ export default function HomePage() {
                 <MobileMenu menuItems={menuItems} />
               </motion.div>
             </div>
-            <div className="flex px-3 items-center gap-3 bg-gradient-to-r from-pink-200 to-yellow-200 rounded-2xl p-4 border-4 border-pink-400">
+            <div className="flex px-3 mb-2 items-center gap-3 bg-gradient-to-r from-pink-200 to-yellow-200 rounded-2xl p-4 border-4 border-pink-400">
               <motion.button
                 className={`p-2 flex justify-center items-center cursor-pointer rounded-full ${
                   listening ? "bg-red-500" : "bg-blue-500"
@@ -469,6 +472,13 @@ export default function HomePage() {
               >
                 <SendOutlined className="!text-xl" />
               </motion.button>
+              <div className="fixed bottom-2 w-full flex justify-center lg:hidden -left-32 mt-4">
+                <img
+                  src="/logos/techosa.png"
+                  alt="Powered by Techosa"
+                  className="h-4"
+                />
+              </div>
             </div>
             <div
               className={`hidden lg:flex flex-col items-center w-full ${
@@ -560,10 +570,12 @@ export default function HomePage() {
           handleWriteThought={handleWriteThought}
           selectedTopic={selectedTopic}
         />
-        <div className="fixed bottom-32 lg:bottom-4 right-4 lg:right-6 text-sm lg:text-base">
-          <p className="bg-gradient-to-br from-blue-500 via-pink-300 to-blue-400 text-transparent bg-clip-text font-mono tracking-tight">
-            Powered by Techosa
-          </p>
+        <div className="fixed bottom-2 right-1/3 lg:left-4 text-sm lg:text-base">
+          <img
+            src="/logos/techosa.png"
+            alt="Powered by Techosa"
+            className="h-6 lg:h-8"
+          />
         </div>
       </div>
     </>

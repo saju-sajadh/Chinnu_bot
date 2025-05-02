@@ -214,9 +214,8 @@ function SigninContent() {
             />
             <span
               onClick={() => setShowPassword(!showPassword)}
-              className={`absolute right-3 ${
-                passwordError ? "top-1/3" : "top-1/2"
-              } cursor-pointer text-gray-600 hover:text-gray-800`}
+              className={`absolute right-3 ${passwordError ? "top-1/3" : "top-1/2"
+                } cursor-pointer text-gray-600 hover:text-gray-800`}
             >
               {showPassword ? <EyeInvisibleOutlined /> : <EyeOutlined />}
             </span>
@@ -255,10 +254,12 @@ function SigninContent() {
           </p>
         </div>
       </div>
-      <div className="fixed bottom-2 right-1/3 lg:right-6 text-sm lg:text-base">
-        <p className=" text-black bg-clip-text font-mono tracking-tight">
-          Powered by Techosa
-        </p>
+      <div className="fixed bottom-2 left-4 text-sm lg:text-base">
+        <img
+          src="/logos/TECHOSA.png"
+          alt="Powered by Techosa"
+          className="h-6 lg:h-8"
+        />
       </div>
     </div>
   );
