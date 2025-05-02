@@ -16,7 +16,7 @@ export default function AboutPage() {
 
   return (
     <div
-      className="h-screen w-full bg-[#f8f7f6] flex flex-col items-center justify-start py-6 px-3 overflow-y-auto"
+      className="h-screen w-full bg-[#f8f7f6] flex flex-col items-center justify-between pt-6 pb-3 px-3 overflow-y-auto"
       style={{ WebkitOverflowScrolling: "touch" }}
     >
       <div className="w-full max-w-lg text-center">
@@ -71,6 +71,13 @@ export default function AboutPage() {
           />
         </div>
       </div>
+      <div className="text-sm lg:text-base w-full">
+          <img
+            src="/logos/techosa.png"
+            alt="Powered by Techosa"
+            className="h-6 lg:h-8"
+          />
+        </div>
     </div>
   );
 }

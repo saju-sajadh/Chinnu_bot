@@ -256,7 +256,7 @@ function SigninContent() {
       </div>
       <div className="fixed bottom-2 left-4 text-sm lg:text-base">
         <img
-          src="/logos/TECHOSA.png"
+          src="/logos/techosa.png"
           alt="Powered by Techosa"
           className="h-6 lg:h-8"
         />
