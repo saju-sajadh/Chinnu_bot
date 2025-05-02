@@ -287,7 +287,7 @@ export default function HomePage() {
 
         <div className="fixed bottom-2 right-1/3 lg:right-6 text-sm lg:text-base">
           <img
-            src="/logos/TECHOSA.png"
+            src="/logos/techosa.png"
             alt="Powered by Techosa"
             className="h-6 lg:h-8"
           />
