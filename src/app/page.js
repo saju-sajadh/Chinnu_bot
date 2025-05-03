@@ -265,7 +265,7 @@ export default function HomePage() {
     {
       label: "Thoughts",
       icon: "/logos/thoughts.png",
-      action: () => setShowThoughtsModal(true),
+      action: () => setShowThoughtsTopicModal(true),
     },
   ];
 

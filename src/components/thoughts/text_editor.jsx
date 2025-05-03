@@ -21,6 +21,7 @@ export default function RichTextEditor({ selectedTopic }) {
   const [content, setContent] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const [conversation, setConversation] = useState([]);
+  const [currentQuestion, setCurrentQuestion] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const [charCount, setCharCount] = useState(0);
@@ -34,13 +35,15 @@ export default function RichTextEditor({ selectedTopic }) {
         setIsLoading(true);
         const prompt = `Generate a thought-provoking question about ${selectedTopic} aligned with the Chinmaya Vision Program's holistic education principles.`;
         const question = await fetchGeminiResponse(prompt);
-        const initialContent = `<h3>${question}</h3><p>Your answer...</p>`;
+        const initialContent = `<h3>${question}</h3><p>I think that,  </p>`;
         setContent(initialContent);
+        setCurrentQuestion(question);
         setConversation([{ role: "model", text: question }]);
         setCharCount(question.length);
         setIsLoading(false);
       } else {
         setContent("<p>Write your thoughts...</p>");
+        setCurrentQuestion("");
         setConversation([]);
         setCharCount(0);
       }
@@ -81,7 +84,7 @@ export default function RichTextEditor({ selectedTopic }) {
     editorProps: {
       attributes: {
         class:
-          "max-h-[60vh] sm:max-h-[50vh] min-h-[200px] sm:min-h-[300px] bg-gradient-to-br from-yellow-100 to-pink-100 rounded-2xl p-3 sm:p-4 focus:outline-none text-base sm:text-lg leading-relaxed custom-scrollbar",
+          "max-h-[60vh] sm:max-h-[50vh] min-h-[200px] sm:min-h-[300px] bg-gradient-to-br from-yellow-100 to-pink-100 rounded-2xl p-3 sm:p-4 focus:outline-none text-base sm:text-lg leading-relaxed custom-scrollbar overflow-y-auto",
       },
     },
     editable: !isCharLimitExceeded,
@@ -98,7 +101,11 @@ export default function RichTextEditor({ selectedTopic }) {
       } else {
         setContent(editor.getHTML());
         setCharCount(newCharCount);
-        setIsTyping(newText !== conversation[conversation.length - 1]?.text);
+        setIsTyping(
+          newText !==
+            currentQuestion +
+              (conversation.length > 1 ? "\nI think that, " : "")
+        );
         setIsCharLimitExceeded(false);
       }
     },
@@ -112,41 +119,48 @@ export default function RichTextEditor({ selectedTopic }) {
   }, [content, editor]);
 
   const handleAsk = async () => {
-    if (!editor || isLoading || charCount >= MAX_CHARS || isCharLimitExceeded) return;
+    if (!editor || isLoading || charCount >= MAX_CHARS || isCharLimitExceeded)
+      return;
     setIsLoading(true);
 
-    const userAnswer = editor.getText().split("\n").slice(1).join("\n").trim();
+    // Extract user answer (exclude the question part)
+    const fullText = editor.getText();
+    const userAnswer = fullText
+      .split("\n")
+      .slice(1)
+      .join("\n")
+      .replace("I think that, ", "")
+      .trim();
+
     if (!userAnswer) {
       setIsLoading(false);
       return;
     }
 
+    // Fetch follow-up question
     const prompt = `User's answer on ${selectedTopic}: "${userAnswer}". Respond with a follow-up question or feedback aligned with the Chinmaya Vision Program's principles.`;
     const geminiResponse = await fetchGeminiResponse(prompt);
 
+    // Update conversation with the current Q&A pair
     const newConversation = [
       ...conversation,
       { role: "user", text: userAnswer },
       { role: "model", text: geminiResponse },
     ];
+
     setConversation(newConversation);
 
-    const updatedContent = newConversation
-      .map((entry) =>
-        entry.role === "user"
-          ? `<p><strong>You:</strong> ${entry.text}</p>`
-          : `<p><strong>Siddha:</strong> ${entry.text}</p>`
-      )
-      .join("");
-    const updatedCharCount = newConversation
-      .map((entry) => entry.text)
-      .join("")
-      .length;
-    if (updatedCharCount <= MAX_CHARS) {
-      setContent(updatedContent);
-      setCharCount(updatedCharCount);
+    // Update editor content to show only the new question
+    const newContent = `<h3>${geminiResponse}</h3><p>I think that, </p>`;
+    const newCharCount = geminiResponse.length + "I think that, ".length;
+
+    if (newCharCount <= MAX_CHARS) {
+      setContent(newContent);
+      setCurrentQuestion(geminiResponse);
+      setCharCount(newCharCount);
     } else {
       setContent("<p>Too many words! Let's keep it short.</p>");
+      setCurrentQuestion("");
       setCharCount(0);
       setConversation([]);
       setIsCharLimitExceeded(true);
@@ -160,10 +174,12 @@ export default function RichTextEditor({ selectedTopic }) {
     setIsLoading(true);
     setIsAnimating(true);
 
+    // Prepare all user answers for final thought
     const userAnswers = conversation
       .filter((entry) => entry.role === "user")
       .map((entry) => entry.text)
       .join("\n");
+
     const prompt = `Based on the user's answers on ${selectedTopic}: "${userAnswers}", create a beautiful, concise thought that corrects any misconceptions, appreciates good answers, and aligns with the Chinmaya Vision Program's holistic education principles.`;
     const finalThought = await fetchGeminiResponse(prompt);
 
@@ -172,6 +188,7 @@ export default function RichTextEditor({ selectedTopic }) {
       setContent(finalContent);
       setCharCount(finalThought.length);
       setConversation([]);
+      setCurrentQuestion("");
       setIsAnimating(false);
       setIsLoading(false);
       setIsCharLimitExceeded(false);
@@ -188,7 +205,7 @@ export default function RichTextEditor({ selectedTopic }) {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
-          className={`w-full max-w-[90vw] sm:max-w-4xl bg-gradient-to-br from-yellow-300 via-pink-300 to-blue-300 rounded-3xl shadow-2xl p-4 sm:p-6 ${comicNeue.className} custom-scrollbar max-h-[calc(100vh-2rem)] overflow-y-auto scroll-smooth relative overflow-hidden`}
+          className={`w-full max-w-[90vw] sm:max-w-4xl bg-gradient-to-br from-yellow-300 via-pink-300 to-blue-300 rounded-3xl shadow-2xl p-4 sm:p-6 ${comicNeue.className} `}
         >
           <div className="absolute top-0 left-0 w-24 sm:w-32 h-24 sm:h-32 bg-red-400 rounded-full opacity-20 -translate-x-12 sm:-translate-x-16 -translate-y-12 sm:-translate-y-16" />
           <div className="absolute bottom-0 right-0 w-32 sm:w-40 h-32 sm:h-40 bg-green-400 rounded-full opacity-20 translate-x-16 sm:translate-x-20 translate-y-16 sm:translate-y-20" />
@@ -209,7 +226,7 @@ export default function RichTextEditor({ selectedTopic }) {
             className="border-4 border-yellow-400 rounded-2xl bg-white shadow-lg relative"
           >
             <MenuBar editor={editor} />
-            <div ref={editorRef} className="relative">
+            <div ref={editorRef} className="relative overflow-y-auto">
               <EditorContent editor={editor} />
               {isTyping && !isCharLimitExceeded && (
                 <motion.button
