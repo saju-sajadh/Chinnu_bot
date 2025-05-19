@@ -46,7 +46,7 @@ export default function WeeklyMoralStory(props) {
               transition={{ delay: 0.2, duration: 0.4 }}
               className="text-lg sm:text-xl text-purple-600 italic text-center"
             >
-              Your Weekly Fun Story!
+              Siddha stories!
             </motion.span>
             <motion.h2
               initial={{ opacity: 0 }}
@@ -81,7 +81,7 @@ export default function WeeklyMoralStory(props) {
                       }
                       width={200}
                       height={200}
-                      className="w-full max-w-[150px] sm:max-w-[200px] h-auto rounded-2xl shadow-lg"
+                      className="w-full .. h-auto rounded-2xl shadow-lg"
                       loading="lazy"
                     />
                   </motion.div>

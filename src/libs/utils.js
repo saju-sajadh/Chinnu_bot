@@ -67,8 +67,11 @@ const moralValues = [
   "Mercy: Show compassion to wrongdoers",
   "Steadfastness: Remain firm",
   "Temperance: Practice moderation",
-  "Fortitude: Face challenges bravely",
   "Understanding: Listen to others",
+  "Humility: Sweetness of speech and humility in nature makes a person successful and great - Chanakya",
+  "Humility: A tree laden with fruits always bends low. Humility is a sign of greatness - Ramakrishna Paramahamsa",
+  "Humility: The more we are humble, the better it is for us - - Ramana Maharshi",
+  "Fortitude: Face challenges bravely",
   "Peacefulness: Promote calm",
   "Cooperation: Work well with others",
   "Faithfulness: Stay true",
@@ -132,103 +135,64 @@ const moralValues = [
 
 export const moralStories = [
   {
-    title: "Fighting Goats and the Jackal",
+    title: "A Journey Beyond the Pitch",
     content: [
-      "One day while a sage was going through a jungle, he saw two golden rams (billy goats) fighting each other. Even though both were wounded, and blood was oozing out from their heads and bodies, they did not stop fighting and rammed at each other.",
-      `At the same time, a hungry jackal was passing by. When he saw all the blood, he started licking the blood from the ground without caring for the fighting rams. Watching all this, the sage thought to himself, "This jackal is a fool as it has become greedy by the smell of blood. If he comes between the fighting rams, it will get rammed and get hurt himself".`,
-      "No sooner had the sage thought of it, the jackal craving for more blood came nearer to the fighting rams, and got caught in the middle of their fight.Both the rams rammed into him by mistake. He got hit on his head, and fell down because he was severely wounded.",
+      "Rajesh,  a fourteen year old boy studying in class IX was eagerly looking forward to getting into the School 's cricket team. With the selections only a week away, his anxiety quadrapled . He shared his feelings with his mother, who noticed that he was not feeling well. She told him about an incident from the Ramayana, where Lord Hanuman was unsure whether he could cross the mighty ocean, but could do so after being motivated by Jambavan, the king of the bear tribe. She emphasized on the fact that even a person such as Lord Hanuman, who was strong and wise, could have self - doubt . What is important is to defeat the demon called self - doubt and trust your skills.",
+      `Rajesh gave his best during the trials. The school team' s coach was impressed. He made Rajesh the captain of the school team. As he was the new ' wonder kid ' in school, he started ignoring his close friends. He spoke rudely to them and was also rude to his mother. His haughtiness became painful to his parents and friends. He stopped going to practice as he thought he had the talent to score well without practice. His friends stopped coming to his matches. Rajesh performed poorly in the tournament. Looking at his poor performance, the cricket coach informed Rajesh that he would not longer be a part of the school team. He felt disheartened and cried profusely to his mother. She calmly listened and consoled him. Rajesh understood that during the selection trials,  what enabled him to perform well was not only his talent but also, consistent practice, the unconditional support that his friends gave, and the fruits and nuts his mother packed with love. `,
+      `He regretted his actions and immediately went and apologized to his mother. He also apologized to his friends and as they were good friends, they graciously accepted his apology. He sought forgiveness from his coach and started practicing regularly.
+      He felt his game improving session after session. With the help of regular practice, support from friends and coach and nutritious food from his mother he got into the School team once again.`,
     ],
     images: [
       {
-        url: "/stories/Fighting Goats and the Jackal_1.png",
-        alt: "Fighting Goats and the Jackal",
+        url: "/stories/A Journey Beyond the Pitch_1.png",
+        alt: "A Journey Beyond the Pitch",
       },
       {
-        url: "/stories/Fighting Goats and the Jackal_2.png",
-        alt: "Fighting Goats and the Jackal",
+        url: "/stories/A Journey Beyond the Pitch_2.png",
+        alt: "A Journey Beyond the Pitch",
       },
     ],
-    moral: "Do not close your eyes to the impending danger due to greed.",
+    moral: "Manage Vanity Well and Stay rooted in Humility.",
   },
   {
-    title: "The King and the Foolish Monkey",
+    title: "Prince Siddhartha",
     content: [
-      "Once there was a king, who had a pet monkey.This monkey was a fool, but was treated royally and moved freely in the king's palace. He was also allowed to enter the king's personal rooms that were forbidden even for the confidential servants.",
-      `One afternoon, the king was asleep, while the monkey kept a watch. All of a sudden, a fly came in the room and sat on the king's chest. The monkey swayed her away, but the fly would only go away for some time and return on the king's chest again.`,
-      "The monkey got very angry and excited. The foolish monkey started chasing the fly with a sword. As the fly sat on the king's chest again, the monkey hit the fly with all his might. The fly flew away unharmed, but the king was severely wounded.",
+      `Prince Siddhartha once awoke to the fact of death, disease and old age in life. To discover the secret of life, he went to a forest and spent his time practicing intense austerities. He practiced intense fasting. His penance was so severe that by the end of his sixth year, he was surviving only on a single grain of rice a day. At one point, he no longer had the strength to meditate. He realized that he would die before he gained liberation due to the ' abuse' he put on his body.`,
+      `As he sat under the tree with no strength to continue further he saw two musicians walking nearby. One of them exclaimed that the melody of his lute was just not right. He wondered what was wrong with it. The other musician calmly examined the lute and replied that the musician had tightened the strings too much. As he loosened the string, he told the musician that the strings should not be too tight or too loose . It should be just right. The music then became more melodious.`,
+      `Prince Siddhartha now understood that even the path of enlightenment could only be gained neither by being too severe on oneself nor getting spoiled in material pleasures, but only by finding the balance. Then Prince Siddhartha accepted the bowl of food offered to him, which was earlier refused. He slowly regained his strength, renewed his meditation and attained liberation.`,
     ],
     images: [
       {
-        url: "/stories/The King and the Foolish Monkey_1.png",
-        alt: "The King and the Foolish Monkey",
+        url: "/stories/Prince Siddhartha_1.png",
+        alt: "Prince Siddhartha",
       },
       {
-        url: "/stories/The King and the Foolish Monkey_2.png",
-        alt: "The King and the Foolish Monkey",
+        url: "/stories/Prince Siddhartha_2.png",
+        alt: "Prince Siddhartha",
       },
     ],
     moral:
-      "Beware of a foolish friend. He can cause you more harm than your enemy.",
+      "The key to balance is to build positive, healthy habits.The key aspects of our life such as eating, exercise, stress management and sleep should be balanced.",
   },
   {
-    title: "The Bird with Two Heads",
+    title: "A Lesson in Staying Cool",
     content: [
-      `Once upon a time, there lived a great bird named Bharunda, on the banks of a lake. It was strange because he had two necks with two heads, but shared the common body. One day, as the bird was wandering, it found a delicious looking red-golden fruit. One of the heads mumbled, "Oh, what a delicious looking fruit. I am lucky to have found it. I am sure the fruit is sent from heavens only for me". On saying so, it started eating the fruit with utmost pleasure. While eating, it kept on praising how it was the most delicious fruit he had ever eaten. Hearing and seeing all this, the other head requested, "Oh dear, please also allow me to taste the fruit that you are praising with all your heart".`,
-      `The first head did not want to share it, so it laughed and said, "We share the same stomach. Whoever amongst us eats the fruit, it goes to the same stomach. It makes no difference on who eats the fruit. Moreover, since I am the one who found this fruit in the first place, I have the right to eat it myself." This selfishness of the first head hurt him very much, and he went silent with disappointment on hearing the first head's reply.`,
-      `Few days later, as they were wandering the second head found some fruits. The fruits were from a poisonous tree. He declared to the first head, "You are a deceitful person. The other day you had insulted me by not sharing the delicious fruit. Now I am going to eat this fruit and avenge your insult". The first head pleaded, "Please don't eat this fruit, it is a poisonous one. We share the same stomach. If you eat it, we will both suffer" Mocking at the first head, the second head replied, "Shut up! Since I am the one who found this fruit in the first place, I have the right to eat it myself". Knowing what would happen, the first head began to cry. The second head ate the poisonous fruit without bothering the first head's requests. As a consequence of this action, as soon as the poison reached the stomach, the bird severely suffered.`,
+      "John McEnroe was one of the greatest tennis players. He has held the World Number One ranking in both singles and doubles. The American tennis champion was notorious and was derailed for his unruly on- court behaviour.",
+      `By his own admission, he had anger addiction and he was constantly fined and even suspended for his rage and tantrums on court. Despite his numerous achievements, the world remembers John as a ' Super Brat' for all the vile things he said and did on court.`,
+      `"When John was only twenty in 1979, ' The Sun' wrote about him as follows: " He is the most vain, ill- tempered, petulant loudmouth that the game of tennis has ever known ". This observation only got validated with time. John McEnroe dug his own grave with his obsessive rage and tantrums.`,
     ],
     images: [
       {
-        url: "/stories/The Bird with Two Heads_1.png",
-        alt: "The Bird with Two Heads",
+        url: "/stories/A Lesson in Staying Cool_1.png",
+        alt: "A Lesson in Staying Cool",
       },
       {
-        url: "/stories/The Bird with Two Heads_2.png",
-        alt: "The Bird with Two Heads",
+        url: "/stories/A Lesson in Staying Cool_2.png",
+        alt: "A Lesson in Staying Cool",
       },
     ],
     moral:
-      "Union is strength.",
-  },
-  {
-    title: "The Bird and the Monkey",
-    content: [
-      `There lived a group of monkeys in the mountains. During one winter, there were heavy rains. Drenched in the rain, they began to shiver in the cold. During this time, some of the monkey found some colourful Gunja fruits, which appeared to them as embers of fire. Hoping to make some fire for themselves, they began to blow at them. A bird on a nearby tree was watching the monkeys from above. Considering the vain attempts the monkeys were busy with, it thought of advising them against it, "What big fools you are. You are blowing at some Gunja fruits and not embers of fire. You will never be able to make any fire out of them."`,
-      `"What you are doing is a waste of time. These fruits will not help you to protect yourself against the cold. Go and find some shelter instead. You may find a cave or a burrow where you will be protected from the rains and the cold winds." The monkeys did not like his advice. One of the old monkeys said, "Go fool yourself. Why are you interfering in our task?" But the bird disagreed. Not heeding what the old monkey had said, it flew down from the tree and persisted that the monkeys stop what they were doing. The monkey ignored his chatter but the bird refused to stop.`,
-      `In an effort to convince the monkeys, the bird came close to explain that their efforts were useless. Already frustrated by their vain efforts, the monkeys became furious. One of the monkeys caught hold of the bird and smashed him against the ground. The bird was severely wounded.`,
-    ],
-    images: [
-      {
-        url: "/stories/The Bird and the Monkey_1.png",
-        alt: "The Bird and the Monkey",
-      },
-      {
-        url: "/stories/The Bird and the Monkey_2.png",
-        alt: "The Bird and the Monkey",
-      },
-    ],
-    moral:
-      "Never give advice unless you are asked for it.",
-  },
-  {
-    title: "The Monkey and the Wedge",
-    content: [
-      `There was once a merchant who employed many carpenters and masons to build a temple in his garden. Regularly, they would start work in the morning; and take a break for the mid-day meals, and return to resume work till evening. One day, a group of monkey arrived at the site of the building and watched the workers leaving for their mid-day meals. One of the carpenters was sawing a huge log of wood. Since, it was only half-done; he placed a wedge in between to prevent the log from closing up. He then went off along with the other workers for his meal.`,
-      `When all the workers were gone, the monkeys came down from the trees and started jumping around the site, and playing with the instruments. There was one monkey, who got curious about the wedge placed between the log. He sat down on the log, and having placed himself in between the half-split log, caught hold of the wedge and started pulling at it.`,
-      `All of a sudden, the wedge came out. As a result, the half-split log closed in and the monkey got caught in the gap of the log. As was his destiny, he was severely wounded.`,
-    ],
-    images: [
-      {
-        url: "/stories/The Monkey and the Wedge_1.png",
-        alt: "The Monkey and the Wedge",
-      },
-      {
-        url: "/stories/The Monkey and the Wedge_2.png",
-        alt: "The Monkey and the Wedge",
-      },
-    ],
-    moral:
-      "One, who interferes in other's work, surely comes to grief.",
+      " When thoughts are repeated,it becomes a habit. When habits are repeated, it becomes behaviour. When behaviour is repeated, it becomes character.",
   },
 ];
 
@@ -240,8 +204,10 @@ const buttonWrapperClasses = "flex items-center gap-2 cursor-pointer";
 const buttonClasses =
   "flex items-center gap-2 bg-white rounded-full py-2 px-4 shadow-sm hover:bg-gray-100 transition-colors text-lg text-gray-900 cursor-pointer";
 
-const mic_on = typeof Audio !== "undefined" ? new Audio("/sounds/mic_on.mp3") : null;
-const mic_off = typeof Audio !== "undefined" ? new Audio("/sounds/mic_off.mp3") : null;
+const mic_on =
+  typeof Audio !== "undefined" ? new Audio("/sounds/mic_on.mp3") : null;
+const mic_off =
+  typeof Audio !== "undefined" ? new Audio("/sounds/mic_off.mp3") : null;
 
 export {
   avatarOptions,
@@ -251,5 +217,5 @@ export {
   buttonClasses,
   moralValues,
   mic_on,
-  mic_off
+  mic_off,
 };
