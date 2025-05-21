@@ -138,7 +138,10 @@ export const moralStories = [
     title: "A Journey Beyond the Pitch",
     content: [
       "Rajesh,  a fourteen year old boy studying in class IX was eagerly looking forward to getting into the School 's cricket team. With the selections only a week away, his anxiety quadrapled . He shared his feelings with his mother, who noticed that he was not feeling well. She told him about an incident from the Ramayana, where Lord Hanuman was unsure whether he could cross the mighty ocean, but could do so after being motivated by Jambavan, the king of the bear tribe. She emphasized on the fact that even a person such as Lord Hanuman, who was strong and wise, could have self - doubt . What is important is to defeat the demon called self - doubt and trust your skills.",
-      `Rajesh gave his best during the trials. The school team' s coach was impressed. He made Rajesh the captain of the school team. As he was the new ' wonder kid ' in school, he started ignoring his close friends. He spoke rudely to them and was also rude to his mother. His haughtiness became painful to his parents and friends. He stopped going to practice as he thought he had the talent to score well without practice. His friends stopped coming to his matches. Rajesh performed poorly in the tournament. Looking at his poor performance, the cricket coach informed Rajesh that he would not longer be a part of the school team. He felt disheartened and cried profusely to his mother. She calmly listened and consoled him. Rajesh understood that during the selection trials,  what enabled him to perform well was not only his talent but also, consistent practice, the unconditional support that his friends gave, and the fruits and nuts his mother packed with love. `,
+      `Rajesh gave his best during the trials. The school team' s coach was impressed. He made Rajesh the captain of the school team. As he was the new ' wonder kid ' in school, he started ignoring his close friends. He spoke rudely to them and was also rude to his mother. His haughtiness became painful to his parents and friends. He stopped going to practice as he thought he had the talent to score well without practice. His friends stopped coming to his matches. Rajesh performed poorly in the tournament. Looking at his poor performance, the cricket coach informed Rajesh that he would not longer be a part of the school team. He felt disheartened and cried profusely to his mother. She calmly listened and consoled him. Rajesh understood that during the selection trials,  what enabled him to perform well was not only his talent but also,`,
+      ` -- consistent practice, `,
+      `-- the unconditional support that his friends gave, `,
+      `-- the fruits and nuts his mother packed with love. `,
       `He regretted his actions and immediately went and apologized to his mother. He also apologized to his friends and as they were good friends, they graciously accepted his apology. He sought forgiveness from his coach and started practicing regularly.
       He felt his game improving session after session. With the help of regular practice, support from friends and coach and nutritious food from his mother he got into the School team once again.`,
     ],
@@ -152,6 +155,7 @@ export const moralStories = [
         alt: "A Journey Beyond the Pitch",
       },
     ],
+    theme: "Kindling the Intellect",
     moral: "Manage Vanity Well and Stay rooted in Humility.",
   },
   {
@@ -160,6 +164,10 @@ export const moralStories = [
       `Prince Siddhartha once awoke to the fact of death, disease and old age in life. To discover the secret of life, he went to a forest and spent his time practicing intense austerities. He practiced intense fasting. His penance was so severe that by the end of his sixth year, he was surviving only on a single grain of rice a day. At one point, he no longer had the strength to meditate. He realized that he would die before he gained liberation due to the ' abuse' he put on his body.`,
       `As he sat under the tree with no strength to continue further he saw two musicians walking nearby. One of them exclaimed that the melody of his lute was just not right. He wondered what was wrong with it. The other musician calmly examined the lute and replied that the musician had tightened the strings too much. As he loosened the string, he told the musician that the strings should not be too tight or too loose . It should be just right. The music then became more melodious.`,
       `Prince Siddhartha now understood that even the path of enlightenment could only be gained neither by being too severe on oneself nor getting spoiled in material pleasures, but only by finding the balance. Then Prince Siddhartha accepted the bowl of food offered to him, which was earlier refused. He slowly regained his strength, renewed his meditation and attained liberation.`,
+      `"Yukta- ahara - viharasya yukta- cheshtasya karmasu Yukta- svapna- avabodhasya  yogo bhavathi dukha - ha"`,
+      `Bhagawad Gita `,
+      `Chapter 6 Sloka- 17`,
+      `Meaning - Practising the yoga of maintaining moderation in the habits of eating, sleeping, working and  recreation can mitigate all material pains.`
     ],
     images: [
       {
@@ -171,6 +179,7 @@ export const moralStories = [
         alt: "Prince Siddhartha",
       },
     ],
+    theme: 'Physical fitness',
     moral:
       "The key to balance is to build positive, healthy habits.The key aspects of our life such as eating, exercise, stress management and sleep should be balanced.",
   },
@@ -179,7 +188,10 @@ export const moralStories = [
     content: [
       "John McEnroe was one of the greatest tennis players. He has held the World Number One ranking in both singles and doubles. The American tennis champion was notorious and was derailed for his unruly on- court behaviour.",
       `By his own admission, he had anger addiction and he was constantly fined and even suspended for his rage and tantrums on court. Despite his numerous achievements, the world remembers John as a ' Super Brat' for all the vile things he said and did on court.`,
-      `"When John was only twenty in 1979, ' The Sun' wrote about him as follows: " He is the most vain, ill- tempered, petulant loudmouth that the game of tennis has ever known ". This observation only got validated with time. John McEnroe dug his own grave with his obsessive rage and tantrums.`,
+      `When John was only twenty in 1979, ' The Sun' wrote about him as follows: " He is the most vain, ill- tempered, petulant loudmouth that the game of tennis has ever known ". This observation only got validated with time. John McEnroe dug his own grave with his obsessive rage and tantrums.`,
+      `• The company of good people, good books and good conversations can alter the content of our thoughts.`,
+      `• At the level of speech, observe the words and the language you use regularly. If it is toxic or abusive, change it. Listen more than you speak."`,
+      `• At the level of action, set yourself incentives or punishments to break away from repetitive behaviour.`
     ],
     images: [
       {
@@ -191,6 +203,7 @@ export const moralStories = [
         alt: "A Lesson in Staying Cool",
       },
     ],
+    theme: 'Emotional Development',
     moral:
       " When thoughts are repeated,it becomes a habit. When habits are repeated, it becomes behaviour. When behaviour is repeated, it becomes character.",
   },
